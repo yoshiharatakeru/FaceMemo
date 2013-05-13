@@ -112,8 +112,9 @@ static FMCommentManager *_sharedInstance  = nil;
     param = [[NSMutableDictionary alloc]init];
     [param setObject:comment.comment forKey:@"comment"];
     [param setObject:comment.from_user forKey:@"from_user"];
-    [param setObject:comment.to_user forKey:@"to_user"];
     [param setObject:comment.disp_flg forKey:@"disp_flg"];
+    [param setObject:comment.to_user forKey:@"to_user"];
+    
 
     
     path = @"memo/create";

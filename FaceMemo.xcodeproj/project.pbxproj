@@ -26,6 +26,8 @@
 		056E42E6173E36A600534D8B /* FMFrindManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42E4173E36A600534D8B /* FMFrindManager.m */; };
 		056E42E9173E36CB00534D8B /* FMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42E8173E36CB00534D8B /* FMUser.m */; };
 		056E42EC173E371700534D8B /* MyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42EB173E371700534D8B /* MyTextField.m */; };
+		056E432617411F0D00534D8B /* FMConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E432517411F0D00534D8B /* FMConnector.m */; };
+		056E4329174125F900534D8B /* FMJsonParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E4328174125F900534D8B /* FMJsonParseOperation.m */; };
 		05D47151172C2D8800556FDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47150172C2D8800556FDC /* UIKit.framework */; };
 		05D47153172C2D8800556FDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47152172C2D8800556FDC /* Foundation.framework */; };
 		05D47155172C2D8800556FDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47154172C2D8800556FDC /* CoreGraphics.framework */; };
@@ -93,6 +95,10 @@
 		056E42E8173E36CB00534D8B /* FMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMUser.m; sourceTree = "<group>"; };
 		056E42EA173E371700534D8B /* MyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTextField.h; sourceTree = "<group>"; };
 		056E42EB173E371700534D8B /* MyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTextField.m; sourceTree = "<group>"; };
+		056E432417411F0D00534D8B /* FMConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMConnector.h; sourceTree = "<group>"; };
+		056E432517411F0D00534D8B /* FMConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMConnector.m; sourceTree = "<group>"; };
+		056E4327174125F900534D8B /* FMJsonParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMJsonParseOperation.h; sourceTree = "<group>"; };
+		056E4328174125F900534D8B /* FMJsonParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMJsonParseOperation.m; sourceTree = "<group>"; };
 		05D4714D172C2D8800556FDC /* FaceMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D47150172C2D8800556FDC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05D47152172C2D8800556FDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -235,6 +241,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		056E432317411E0000534D8B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				056E432417411F0D00534D8B /* FMConnector.h */,
+				056E432517411F0D00534D8B /* FMConnector.m */,
+				056E4327174125F900534D8B /* FMJsonParseOperation.h */,
+				056E4328174125F900534D8B /* FMJsonParseOperation.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		05D47144172C2D8800556FDC = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +290,7 @@
 		05D47156172C2D8800556FDC /* FaceMemo */ = {
 			isa = PBXGroup;
 			children = (
+				056E432317411E0000534D8B /* Network */,
 				05D47168172C2D8800556FDC /* MainStoryboard.storyboard */,
 				056E42D7173E35F000534D8B /* Controller */,
 				056E42D6173E35A300534D8B /* Model */,
@@ -392,6 +410,8 @@
 				056E42E6173E36A600534D8B /* FMFrindManager.m in Sources */,
 				056E42E9173E36CB00534D8B /* FMUser.m in Sources */,
 				056E42EC173E371700534D8B /* MyTextField.m in Sources */,
+				056E432617411F0D00534D8B /* FMConnector.m in Sources */,
+				056E4329174125F900534D8B /* FMJsonParseOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,9 +24,16 @@
     
     //現状ではただ登録するのみ
     //TODO:初めてのユーザーのみを検出してデータベースに登録
-    NSString *path = @"sample/index";
-    NSString *url_str = [_baseUrl stringByAppendingFormat:path];
-    [self requestToURL:url_str method:@"POST"];
+    NSString *path = @"sample/create";
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            path,@"path",
+                            @"POST",@"method",
+                            nil];
+    
+    NSLog(@"params:%@",params.description);
+    [self request:params];
+    
     return self;
     
 }
@@ -35,30 +42,27 @@
 - (void)postToPath:(NSString*)path param:(NSDictionary*)param{
     NSLog(@"client:postToPath");
     
-    NSLog(@"client:param:%@",param.description);
     //パラメータ作成
-    NSString *param_Str = [NSString string];
-    NSArray *keys = param.allKeys;
-    NSLog(@"clietn:param.allkeys:%@",keys);
-    for (NSString *key in keys) {
-        NSString *value_escaped = [self addEscape:[param objectForKey:key]];
-        NSLog(@"value_escaped:%@",value_escaped);
-        NSString *a = [NSString stringWithFormat:@"%@=%@&",key, value_escaped];
-        param_Str = [param_Str stringByAppendingFormat:a];
-    }
-    NSLog(@"param_Str:%@",param_Str);
+    NSData *paramData = [self textBodyForParam:param];
+
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+    path,       @"path",
+    paramData,  @"paramData",
+    @"POST",    @"method",
+    nil];
     
-    //url作成
-    NSString *url_str;
-    url_str = [NSString stringWithFormat:@"%@%@?%@",_baseUrl, path, param_Str];
-    NSLog(@"url_str:%@",url_str);
+    NSLog(@"params:%@",params.description);
     
-    [self requestToURL:url_str method:@"POST"];
+    [self request:params];
+    
+
+    
      
 }
 
 
--(void)requestToURL:(NSString*)url_str method:(NSString*)method
+
+-(void)request:(NSDictionary*)params
 {
     NSLog(@"client:request");
     //TODO:ちゃんと書く
@@ -69,10 +73,16 @@
     NSURL         *url;
     
     //リクエスト準備
+    NSString *url_str = [NSString stringWithFormat:@"%@%@",_baseUrl,[params objectForKey:@"path"]];
     url = [NSURL URLWithString:url_str];
     NSLog(@"url:%@",[url absoluteString]);
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-    [req setHTTPMethod:@"GET"];
+    
+    //ヘッダ,ボディ準備
+    [req setHTTPMethod:[params objectForKey:@"method"]];
+    [req setValue:@"multipart/form-data"forHTTPHeaderField:@"Content-Type"];
+    [req setHTTPBody:[params objectForKey:@"paramData"]];
+
     
     //送信
     data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
@@ -97,6 +107,31 @@
     
     
 
+    
+}
+
+
+//リクエストボディの準備（テキスト)
+-(NSData*)textBodyForParam:(NSDictionary*)param{
+    
+    NSMutableString *textStr = [[NSMutableString alloc]init];
+    if (!param) {
+        return nil;
+    }
+    
+    NSArray *allKeys = [param allKeys];
+    for (int i=0; i<allKeys.count; i++) {
+        
+        //エスケープ
+        NSString *key = [allKeys objectAtIndex:i];
+        NSString *value = [self addEscape:[param objectForKey:key]];
+        NSString *content = [NSString stringWithFormat:@"%@=%@&",key, value];
+        [textStr appendString:content];
+        
+    }
+    
+    NSLog(@"text:%@",textStr);
+    return [textStr dataUsingEncoding:NSUTF8StringEncoding];
     
 }
 

@@ -210,7 +210,7 @@ return height;
     FMComment *comment = FMComment.new;
     [comment setTo_user:_friend.name];
     [comment setFrom_user:_user.name];
-    [comment setDisp_flg:@"false"];
+    [comment setDisp_flg:@"falset"];
     NSLog(@"_user.name:%@",_user.name);
     
     _commentManager= [FMCommentManager sharedManager];
