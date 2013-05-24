@@ -10,11 +10,11 @@
 
 @interface FMFriend : NSObject
 @property (nonatomic,strong) NSString *first_name;
-@property (nonatomic,strong) NSString *id;
+@property (nonatomic,strong) NSString *identifier;
 @property (nonatomic,strong) NSString *last_name;
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *username;
 
-- (id)initWithName:(NSString*)name first_name:(NSString*)first_name id:(NSString*)id last_name:(NSString*)last_name username:(NSString*)username;
+- (id)initWithName:(NSString*)name first_name:(NSString*)first_name identifier:(NSString*)identifier last_name:(NSString*)last_name username:(NSString*)username;
 
 @end

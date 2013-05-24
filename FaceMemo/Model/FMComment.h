@@ -14,7 +14,7 @@
 @property(nonatomic,strong) NSString *from_user;
 @property(nonatomic,strong) NSString *disp_flg;
 @property(nonatomic,strong) NSString *identifier;
-@property(nonatomic,strong) NSString *dateTime;
+@property(nonatomic,strong) NSString *date;
 
 
 @end

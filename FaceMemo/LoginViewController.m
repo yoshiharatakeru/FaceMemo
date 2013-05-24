@@ -92,9 +92,11 @@
         default:
             break;
     }
+    
+    /*デリゲートで通知してるのでいらないのでは？
     [[NSNotificationCenter defaultCenter]
      postNotificationName:SCSessionStateChangedNotification
-     object:session];
+     object:session];*/
     
     
     if (error) {

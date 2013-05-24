@@ -11,12 +11,18 @@
 #import "FMCommentManager.h"
 #import "SBJson.h"
 #import "MyTextField.h"
+#import "FMCommentNetworkOperation.h"
+#import "FMSwitch.h"
 
 @interface DetailViewController ()
 
 < UITableViewDataSource,
   UITableViewDelegate,
-  UITextFieldDelegate >
+  UITextFieldDelegate,
+  FMCommentNetworkOperationDelegate,
+  FMConnectorDelegate,
+  MBProgressHUDDelegate
+>
 
 
 
@@ -36,20 +42,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //テーブル
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    //TODO:コメント取得
+    //model準備
+    _commentManager= [FMCommentManager sharedManager];
     
-
+    NSLog(@"DetailViewController:viewDidLoad");
     
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"view will appear");
-    [_tableView reloadData];
     
+    NSLog(@"DetailViewController:viewWillAppear");
+    
+    //コメント取得:プロパティが消えてしまう。
+    [self performSelector:@selector(downloadComments) withObject:nil afterDelay:0];
+      
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [_commentManager initProperties];
     
 }
 
@@ -69,6 +87,7 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     NSInteger num;
     switch (section) {
         case 0:{
@@ -76,8 +95,10 @@
             num = 1;
             break;
         }
-            
+
         case 1:{
+            //num =  3;
+            NSLog(@"Num:%d",_commentManager.comments.count);;
             num = _commentManager.comments.count;
             
             break;
@@ -122,31 +143,63 @@
 
 
 -(void)updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+    
+    
     switch (indexPath.section) {
         
-        case 0:{
-            //フレンドの基本情報
-            UILabel *lb_name= (UILabel*)[cell viewWithTag:1];
+        case 0:{//フレンドの基本情報
+            //名前
+            UILabel *lb_name= (UILabel*)[cell viewWithTag:2];
             lb_name.text = _friend.name;
-            NSLog(@"name:%@",_friend.name);
+            
+            //写真
+            FBProfilePictureView *ProView = (FBProfilePictureView*)[cell viewWithTag:1];
+            ProView.profileID = _friend.identifier;
+            
             
             break;
         }
         
-        case 1:{
-            //フレンドの既存情報
-            MyTextField *tf = (MyTextField*)[cell viewWithTag:1];
-            tf.delegate = self;
+        case 1:{//コメント
+            
+            FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
+            /*
+            //コメント
+            //MyTextField *tf = (MyTextField*)[cell viewWithTag:1];
+            //tf.text = comment.comment;
+            //tf.delegate = self;
+            //tf.indexPath = indexPath;
+
+            
+            //削除ボタン
+            FMButton *bt = (FMButton*)[cell viewWithTag:2];
+            bt.indexPath = indexPath;
+            [bt addTarget:self action:@selector(deleteBtPressed:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //公開スイッチ
+            FMSwitch *sw = (FMSwitch*)[cell viewWithTag:3];
+            [sw addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+            sw.indexPath = indexPath;
+            sw.on = ([comment.disp_flg isEqualToString:@"true"])? YES:NO;
+            NSLog(@"disp_flg:%@",comment.disp_flg);
+            */
+            
+            
+            //日付
+            UILabel *lb_date = (UILabel*)[cell viewWithTag:2];
+            lb_date.text = comment.date;
             
             break;
+             
         }
         
         case 2:{
+            /*
             //追加ボタン
             UIButton *bt = (UIButton*)[cell viewWithTag:1];
-            [bt addTarget:self action:@selector(addSectionPressed) forControlEvents:UIControlEventTouchUpInside];
+            [bt addTarget:self action:@selector(addCommentPressed) forControlEvents:UIControlEventTouchUpInside];
 
-            
+            */
             
             break;
         }
@@ -163,18 +216,18 @@
     switch (indexPath.section) {
         case 0:{
             //フレンドの基本情報
-            height = 160;
+            height = 122;
             break;
             
         }
         case 1:{
-            //フレンドの既存情報
-            height = 44;
+            //コメント
+            height = 122;
             break;
             
         }
         case 2:{
-            height = 60;
+            height = 61;
 
             break;
         }
@@ -187,11 +240,15 @@ return height;
 }
 
 
+
+
 #pragma mark -
 #pragma textField delegate
 
 //編集終了後
 - (void)textFieldDidEndEditing:(MyTextField *)textField{
+    NSLog(@"indexpath.row:%d",textField.indexPath.row);
+    NSLog(@"comment:%@",textField.text);
     
     FMComment *comment = [_commentManager.comments objectAtIndex:textField.indexPath.row];
     [comment setComment:textField.text];
@@ -199,41 +256,165 @@ return height;
 }
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(MyTextField *)textField{
     [textField resignFirstResponder];
 }
+
 
 #pragma mark -
 #pragma mark button action
 
-- (void)addSectionPressed{
+- (void)addCommentPressed{
     FMComment *comment = FMComment.new;
-    [comment setTo_user:_friend.name];
-    [comment setFrom_user:_user.name];
-    [comment setDisp_flg:@"falset"];
-    NSLog(@"_user.name:%@",_user.name);
+    [comment setTo_user:_friend.identifier];
+    [comment setFrom_user:_user.id_facebook];
+    [comment setDisp_flg:@"false"];
     
-    _commentManager= [FMCommentManager sharedManager];
     [_commentManager addComment:comment];
-    NSLog(@"num: %d",_commentManager.comments.count);
     
-    //テーブルの更新
+    //セル追加
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_commentManager.comments.count-1 inSection:1];
-    [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    
+    //テーブル更新
+    for (UITableViewCell *cell in _tableView.visibleCells) {
+        [self updateCell:cell atIndexPath:[_tableView indexPathForCell:cell]];
+     
+    }
+    
+}
+
+
+- (void)deleteBtPressed:(FMButton*)bt{
+    
+    [_commentManager removeCommentAtIndex:bt.indexPath.row];
+    
+    //セル削除
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.indexPath.row inSection:1];
+    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    
+    //テーブル更新
+    for (UITableViewCell *cell in _tableView.visibleCells) {
+        [self updateCell:cell atIndexPath:[_tableView indexPathForCell:cell]];
+        
+    }
     
 }
 
 - (IBAction)savePressed:(id)sender {
-    NSLog(@"DetailCon:savePressed");
-    NSLog(@"numarray:%d",_commentManager.comments.count);
-    [_commentManager update];
-}
-
-
-
-- (IBAction)cancelPressed:(id)sender {
-}
-
-
     
+    [self.view endEditing:YES];
+    
+    FMConnector *connector = [FMConnector sharedInstance];
+    connector.delegate = self;
+    [connector updateComments];
+    _HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _HUD.labelText = @"Loading";
+    
+}
+
+
+- (IBAction)backBtPressed:(id)sender {
+    [self.viewDeckController closeRightView];
+
+}
+
+
+
+-(void)switchValueChanged:(FMSwitch*)sw{
+    
+    FMComment *comment = [_commentManager.comments objectAtIndex:sw.indexPath.row];
+    comment.disp_flg = (sw.on)? @"true":@"false";
+    
+}
+
+
+
+
+#pragma mark -
+#pragma mark private method
+
+- (void)downloadComments{
+    
+    [_commentManager setFrom_user:_user.id_facebook];
+    [_commentManager setTo_user:_friend.identifier];
+    
+    _connector = [FMConnector sharedInstance];
+    _connector.delegate = self;
+    [_connector downloadComments];
+    
+    //インジケータの表示
+    _HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _HUD.labelText = @"Loading";
+
+}
+
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[_HUD removeFromSuperview];
+	_HUD = nil;
+}
+
+
+#pragma mark  -
+#pragma mark FMConnectorDelegate
+
+//ロード開始
+- (void)connectorDidBeginLoading:(id)sender{
+    
+}
+
+//ダウンロード完了
+- (void)connector:(FMConnector *)connector didFinishDownLoading:(NSArray*)responseData{
+    
+    NSLog(@"res:%@",responseData.description);
+    
+    //コメントモデル追加
+    for (NSDictionary *res in responseData) {
+        FMComment *comment = FMComment.new;
+        [comment setIdentifier:[res objectForKey:@"id"]];
+        [comment setTo_user:[res objectForKey:@"to_user"]];
+        [comment setFrom_user:[res objectForKey:@"from_user"]];
+        [comment setComment:[res objectForKey:@"memo"]];
+        NSString *disp_flg = ([[res objectForKey:@"disp_flg"]intValue] == 1)? @"true":@"false";
+        [comment setDisp_flg:disp_flg];
+        [comment setDate:[res objectForKey:@"created_at"]];
+        
+        [_commentManager addComment:comment];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //テーブル更新
+        [_tableView reloadData];
+        [_HUD hide:YES];
+    });
+    
+
+
+}
+
+
+//アップデート完了
+- (void)connectorDidFinishUpdating:(id)sender{
+    _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    _HUD.mode = MBProgressHUDModeCustomView;
+    _HUD.labelText = @"送信完了";
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_HUD hide:YES afterDelay:2];
+        
+    });
+    
+}
+
+
+//失敗
+- (void)connectorDidFailLoadingWithError:(id)sener{
+    NSLog(@"エラー");
+}
+
+
 @end

@@ -7,19 +7,30 @@
 //
 
 #import "FriendsViewController.h"
-#import "SettingViewController.h"
+#import "LeftViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "FMFriend.h"
 #import "DetailViewController.h"
+#import "FMControllerManager.h"
 
-@interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate,LoginViewControllerDelegate>
+@interface FriendsViewController ()
+
+<
+UITableViewDataSource,
+UITableViewDelegate,
+LoginViewControllerDelegate,
+UITextFieldDelegate,
+LeftViewControllerDelegate
+>
+
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UIButton *getFriendBt;
 @property (strong, nonatomic) NSMutableArray *arrayFriends;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *serchField;
 
 @end
 
@@ -48,7 +59,7 @@
         [self showLoginView];
     }
     
-    //facebookのセッションが切れた場合の通知要求を登録
+    //facebookのセッションが変化した場合の通知要求を登録
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(sessionStateChanged:)
@@ -58,14 +69,24 @@
     //テストボタン
     [_getFriendBt addTarget:self action:@selector(getFriendBtPressed) forControlEvents:UIControlEventTouchUpInside];
     
+    //メニューボタン
+    [_menu_bt addTarget:self action:@selector(menu_btPressed) forControlEvents:UIControlEventTouchUpInside];
+    
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    _arrayFriends = [[NSMutableArray alloc]init];
+    _serchField.delegate = self;
+    
+
+    
+    //モデル
+    _friendManager = [FMFriendManager sharedManager];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    
     if (FBSession.activeSession.isOpen) {
         //プロフィール情報の取得
         [self populateUserDetails];
@@ -73,9 +94,13 @@
         //フレンド情報の取得
         [self populateFriendsData];
         
-
+    }else{
+        NSLog(@"takeru");
+        LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        loginCon.delegate = self;
+        [self presentViewController:loginCon animated:YES completion:nil];
+        
     }
-
     
 }
 
@@ -86,11 +111,8 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    //viewDeckControllerの設定
-    SettingViewController *settingCon = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingViewController"];
-    DetailViewController *detailCon = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    [self.viewDeckController setRightController:detailCon];
-    [self.viewDeckController setLeftController:settingCon];
+    
+
 
 }
 
@@ -112,25 +134,24 @@
 }
 
 
-- (IBAction)pusLogoutBt:(id)sender {
-    [FBSession.activeSession closeAndClearTokenInformation];
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        NSLog(@"まだログイン中");
-    } else {
-        NSLog(@"ログアウト済み");
-        LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self presentViewController:loginCon animated:YES completion:nil];
-    }
-}
+#pragma mark -
+#pragma mark Button action
 
-//設定画面開く
-- (IBAction)push:(id)sender {
-    NSLog(@"takeru");
-    [self.viewDeckController toggleLeftViewAnimated:YES];
+- (void)menu_btPressed{
     
+    //現状のセンタービューを保存
+    FMControllerManager *controllerManager = FMControllerManager.new;
+    [controllerManager setFriendViewController:self];
+    
+    //メビュー表示
+    LeftViewController  *leftCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LeftViewController"];
+    leftCon.delegate = self;
+    self.viewDeckController.leftSize = 160;
+    [self.viewDeckController setLeftController:leftCon];
+    [self.viewDeckController toggleLeftViewAnimated:YES];
+
+
 }
-
-
 
 
 
@@ -140,35 +161,30 @@
 //友達リスト取得メソッド
 - (BOOL)populateFriendsData{
 
-    NSLog(@"get");
     [[FBRequest requestForMyFriends]startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        NSLog(@"takeru");
+        
         if (error) {
             NSLog(@"error:%@",error.localizedDescription);
         }
 
-     //FMFrindオブジェクトとして配列に追加
-     //TODO:_arrayFriendsはキャッシュとして保存するように変更
-        if (_arrayFriends) {
-            [_arrayFriends removeAllObjects];
-        }
-        NSArray *data = [result objectForKey:@"data"];
-     for (NSDictionary *dic in data){
-         FMFriend *friend = [[FMFriend alloc]initWithName:[dic objectForKey:@"name"] first_name:[dic objectForKey:@"first_name"] id:[dic objectForKey:@"id"] last_name:[dic objectForKey:@"last_name"] username:[dic objectForKey:@"username"]];
-         [_arrayFriends addObject:friend];
-         //テーブルビューに追加
-         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[data indexOfObject:dic] inSection:0];
-         [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-     }
+        [_friendManager initFriends];
         
-        /*
-        //テーブルの表示を更新
-        for (int i=0; i<_arrayFriends.count; i++) {
-            NSIndexPath *indexPath= [NSIndexPath indexPathForRow:i inSection:1];
-            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-            [self updateCell:cell atIndexPath:indexPath];
-        }*/
-        //[_tableView reloadData];
+        NSArray *data = [result objectForKey:@"data"];
+        
+        for (NSDictionary *dic in data){
+            
+            //managerに追加
+            FMFriend *friend = [[FMFriend alloc]initWithName:[dic objectForKey:@"name"] first_name:[dic objectForKey:@"first_name"] identifier:[dic objectForKey:@"id"] last_name:[dic objectForKey:@"last_name"] username:[dic objectForKey:@"username"]];
+            [_friendManager addFriend:friend];
+            
+            //テーブルビュー更新
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[data indexOfObject:dic] inSection:0];
+            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        }
+        
+        //検索用に変化しないarrayを作成
+        [_friendManager setAllFriends:[[NSArray alloc]initWithArray:_friendManager.friends] ];
+
         
     }];
     
@@ -206,7 +222,7 @@
                  
                   //FMUserモデルクラスを作成してデータベースに保存
                  //TODO場所がここだとマズイ。ログインアクションの直後に置きたい
-                 _user = FMUser.new;
+                 _user = [FMUser sharedInstance];
                  [_user setFirst_name:user.first_name];
                  [_user setLast_name:user.last_name];
                  [_user setMiddle_name:user.middle_name];
@@ -214,7 +230,7 @@
                  [_user setUsername:user.username];
                  [_user setLocation:user.location];
                  [_user setId_facebook:user.id];
-                 [_user updateUserData];
+                 //[_user updateUserData];
                  
              }
          }];
@@ -229,32 +245,46 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _arrayFriends.count;
+    return _friendManager.friends.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
+    
     cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
-    UILabel *lb_name = (UILabel*)[cell viewWithTag:1];
-    lb_name.text = @"takeru";
     [self updateCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
 -(void)updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-    FMFriend *friend = [_arrayFriends objectAtIndex:indexPath.row];
+    
+    FMFriend *friend = [_friendManager.friends objectAtIndex:indexPath.row];
     UILabel *lb_name = (UILabel*)[cell viewWithTag:1];
+    FBProfilePictureView *picView = (FBProfilePictureView*)[cell viewWithTag:2];
+    
+    picView.profileID = nil;
+    //名前
     lb_name.text = friend.name;
+    
+    //写真
+    picView.profileID  = friend.identifier;
+    
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    DetailViewController *detailCon = (DetailViewController*)self.viewDeckController.rightController;
-    detailCon.friend = [_arrayFriends objectAtIndex:indexPath.row];
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.view endEditing:YES];
+    
+    //詳細画面
+    DetailViewController *detailCon = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    [self.viewDeckController setRightController:detailCon];
+    self.viewDeckController.rightSize = 0;
+    detailCon.friend = [_friendManager.friends objectAtIndex:indexPath.row];
     detailCon.user   = _user;
-    FMFriend *f = [_arrayFriends objectAtIndex:indexPath.row];
+    
     [self.viewDeckController toggleRightView];
 
     
@@ -262,11 +292,79 @@
 
 
 #pragma mark -
+#pragma mark LeftViewControllerDelegate
+
+- (void)leftViewControllerDidPressLogout:(id)sender{
+    
+    //ログアウト
+    [FBSession.activeSession closeAndClearTokenInformation];
+    
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        NSLog(@"まだログイン中");
+    
+    } else {
+        NSLog(@"ログアウト完了");
+        LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        loginCon.delegate = self;
+        [self presentViewController:loginCon animated:YES completion:nil];
+    }
+    
+    
+}
+
+
+#pragma mark -
 #pragma mark loginViewControllerDelegate
+
 -(void)loginViewControllerDidLogin:(id)sender{
+    NSLog(@"takeru");
     [self dismissViewControllerAnimated:YES completion:nil];
     //ユーザー情報をデータベースに登録
     
+}
+
+
+#pragma mark -
+#pragma mark UITextfieldDelegate
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    NSString *result = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSLog(@"text:%@",result);
+    
+    
+    //friendsを空に
+    [_friendManager initFriends];
+    
+    for (FMFriend *friend in _friendManager.allFriends) {
+        NSRange match = [friend.name rangeOfString:result];
+        
+        if (match.location != NSNotFound) {
+            [_friendManager addFriend:friend];
+        }
+    }
+    
+    if ([result isEqualToString:@""]){
+        [_friendManager.friends addObjectsFromArray:_friendManager.allFriends ];
+    }
+     
+    
+    //テーブルの更新
+    [_tableView reloadData];
+    
+    
+    return YES;
+}
+
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    NSLog(@"編集開始");
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"編集終了");
     
 }
 

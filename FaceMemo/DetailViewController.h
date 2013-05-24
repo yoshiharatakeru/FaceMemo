@@ -10,6 +10,8 @@
 #import "FMFriend.h"
 #import "FMCommentManager.h"
 #import "FMUser.h"
+#import "FMConnector.h"
+#import "FMButton.h"
 
 @interface DetailViewController : UIViewController
 
@@ -18,6 +20,8 @@ tableView;
 @property(nonatomic,strong) FMFriend *friend;
 @property(nonatomic,strong) FMUser   *user;
 @property(nonatomic,strong) FMCommentManager *commentManager;
+@property(nonatomic,strong) FMConnector *connector;
+@property(nonatomic,strong) MBProgressHUD *HUD;
 
 
 @end

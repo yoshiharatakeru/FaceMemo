@@ -10,12 +10,12 @@
 
 @implementation FMFriend
 
-- (id)initWithName:(NSString *)name first_name:(NSString *)first_name id:(NSString *)id last_name:(NSString *)last_name username:(NSString *)username{
+- (id)initWithName:(NSString *)name first_name:(NSString *)first_name identifier:(NSString *)identifier last_name:(NSString *)last_name username:(NSString *)username{
     self = [super init];
     if(self){
         _name = name;
         _first_name = first_name;
-        _id = id;
+        _identifier = identifier;
         _last_name = last_name;
         _username = username;
      }

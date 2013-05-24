@@ -17,9 +17,11 @@
 - (void)removeCommentAtIndex:(unsigned int)index;
 - (void)moveCommentFromIndex:(unsigned int)fromIndex toIndex:(unsigned int)toIndex;
 - (void)update;
-
+- (void)initProperties;
 
 @property(nonatomic,strong) NSMutableArray *comments;
 @property(nonatomic,strong) NSMutableArray *comments_removed;
+@property(nonatomic,strong) NSString *to_user;
+@property(nonatomic,strong) NSString *from_user;
 
 @end

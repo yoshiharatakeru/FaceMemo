@@ -54,15 +54,30 @@ static FMCommentManager *_sharedInstance  = nil;
 
 //削除
 -(void)removeCommentAtIndex:(unsigned int)index{
+    
     if (index < 0 || index > _comments.count - 1) {
         return;
     }
     
+    FMComment *comment = [_comments objectAtIndex:index];
+    
     [_comments removeObjectAtIndex:index];
-    [_comments_removed addObject:[_comments objectAtIndex:index]];
+    
+    if (comment.identifier != nil) {
+        
+        [_comments_removed addObject:comment];
+
+    }
 
 }
 
+
+-(void)initProperties{
+    [_comments removeAllObjects];
+    [_comments_removed removeAllObjects];
+    _to_user = nil;
+    _from_user = nil;
+}
 
 //移動
 -(void)moveCommentFromIndex:(unsigned int)fromIndex toIndex:(unsigned int)toIndex{
@@ -124,8 +139,6 @@ static FMCommentManager *_sharedInstance  = nil;
     client = [[FMClient alloc]initWithBaseUrl:BASE_URL];
     [client postToPath:path param:param];
     
-    
-             
     
 }
 

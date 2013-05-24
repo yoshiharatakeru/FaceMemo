@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FMUser.h"
+#import "FMFriendManager.h"
 
 @interface FriendsViewController : UIViewController
 @property(nonatomic,strong) FMUser *user;
-
+@property(nonatomic,strong) FMFriendManager *friendManager;
+@property (weak, nonatomic) IBOutlet UIButton *menu_bt;
 @end

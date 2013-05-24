@@ -59,6 +59,11 @@ NSString *const SCSessionStateChangedNotification =
 }
 
 
++(void)showAlertWithTitle:(NSString*)title message:(NSString*)message{
+    UIAlertView *al = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [al performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+}
+
 
 
 @end

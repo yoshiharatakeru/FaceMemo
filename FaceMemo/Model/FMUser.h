@@ -19,5 +19,6 @@
 //@property (nonatomic,strong) NSString *link;
 //@property (nonatomic,strong) NSString *birthday;
 
++ (FMUser*)sharedInstance;
 -(void)updateUserData;
 @end
