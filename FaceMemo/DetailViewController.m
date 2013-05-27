@@ -37,6 +37,9 @@
 
 {
     NSIndexPath *_settingIndexPath;
+
+    __weak IBOutlet UILabel *_lb_name;
+    __weak IBOutlet FBProfilePictureView *_profileImage;
 }
 
 
@@ -63,6 +66,7 @@
     //設定ビューのステータス
     _settingIndexPath = nil;
     
+
     
     NSLog(@"DetailViewController:viewDidLoad");
     
@@ -75,7 +79,8 @@
     
     //コメント取得:プロパティが消えてしまう。
     [self performSelector:@selector(downloadComments) withObject:nil afterDelay:0];
-      
+
+    
 }
 
 
@@ -85,6 +90,21 @@
     
 }
 
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    
+    NSLog(@"friend.name:%@",_friend.name);
+
+    //プロフィール情報
+    _lb_name.text = _friend.name;
+    
+    _profileImage.alpha = 0;
+    _profileImage.profileID = _friend.identifier;
+    [UIView animateWithDuration:0.3 animations:^{
+        _profileImage.alpha = 1;
+    } completion:nil];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -162,21 +182,8 @@
     
     switch (indexPath.section) {
         
-        case 0:{//フレンドの基本情報
-            //名前
-            UILabel *lb_name= (UILabel*)[cell viewWithTag:2];
-            lb_name.text = _friend.name;
-            
-            //写真
-            FBProfilePictureView *ProView = (FBProfilePictureView*)[cell viewWithTag:1];
-            ProView.alpha = 0;
-            ProView.profileID = _friend.identifier;
-            //アニメーション
-            [UIView animateWithDuration:0.2 animations:^{
-                ProView.alpha = 1;
-            } completion:nil];
-            
-            
+        case 0:{
+
             break;
         }
         

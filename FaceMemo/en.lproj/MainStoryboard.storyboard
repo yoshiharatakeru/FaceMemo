@@ -264,6 +264,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cyan="0.76966506242752075" magenta="0.7130846381187439" yellow="0.65754175186157227" black="0.10596478174603174" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                             </imageView>
+                            <view contentMode="scaleToFill" id="PJJ-G9-fEs">
+                                <rect key="frame" x="0.0" y="44" width="320" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="profile@2x.png" id="aWq-Yu-ylq">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.67450982329999998" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                    </imageView>
+                                    <view tag="1" contentMode="scaleToFill" id="wDv-c5-TWy" customClass="FBProfilePictureView">
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h1B-W1-h2q">
+                                        <rect key="frame" x="143" y="61" width="168" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="19"/>
+                                        <color key="textColor" white="0.50252149470899465" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0hO-8t-qn1">
                                 <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.59654425180000004" green="0.71167883210000005" blue="0.090196078430000007" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -274,25 +298,6 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="profile@2x.png" id="aWq-Yu-ylq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.67450982329999998" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
-                                                </imageView>
-                                                <view tag="1" contentMode="scaleToFill" id="wDv-c5-TWy" customClass="FBProfilePictureView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h1B-W1-h2q">
-                                                    <rect key="frame" x="143" y="61" width="168" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="19"/>
-                                                    <color key="textColor" white="0.50252149470899465" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
@@ -455,6 +460,8 @@
                         <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="_lb_name" destination="h1B-W1-h2q" id="uxe-hM-vIC"/>
+                        <outlet property="_profileImage" destination="wDv-c5-TWy" id="oUw-k4-dui"/>
                         <outlet property="_tableView" destination="0hO-8t-qn1" id="mU9-GM-4hn"/>
                     </connections>
                 </viewController>
@@ -585,6 +592,61 @@
         <image name="tab_brar@2x.png" width="640" height="89"/>
         <image name="table@2x.png" width="641" height="89"/>
     </resources>
+    <classes>
+        <class className="BaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backBtPressed:"/>
+                <relationship kind="action" name="savePressed:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FBProfilePictureView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBProfilePictureView.h"/>
+        </class>
+        <class className="FMButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FMButton.h"/>
+        </class>
+        <class className="FMTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FMTextView.h"/>
+        </class>
+        <class className="FriendsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="getFriendBt" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menu_bt" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="FBProfilePictureView"/>
+                <relationship kind="outlet" name="profileName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="serchField" candidateClass="MyTextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LeftViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeftViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LoginBt" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MyTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyTextField.h"/>
+        </class>
+        <class className="UserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backBtPressed:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
