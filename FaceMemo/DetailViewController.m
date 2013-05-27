@@ -91,21 +91,6 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated{
-    
-    
-    NSLog(@"friend.name:%@",_friend.name);
-
-    //プロフィール情報
-    _lb_name.text = _friend.name;
-    
-    _profileImage.alpha = 0;
-    _profileImage.profileID = _friend.identifier;
-    [UIView animateWithDuration:0.3 animations:^{
-        _profileImage.alpha = 1;
-    } completion:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -183,6 +168,8 @@
     switch (indexPath.section) {
         
         case 0:{
+            
+            NSLog(@"name is :%@",_friend.name);
 
             break;
         }
@@ -469,7 +456,18 @@ return height;
 #pragma mark private method
 
 - (void)downloadComments{
+    NSLog(@"friend.name:%@",_friend.name);
     
+    //プロフィール情報
+    _lb_name.text = _friend.name;
+    
+    _profileImage.alpha = 0;
+    _profileImage.profileID = _friend.identifier;
+    [UIView animateWithDuration:0.3 animations:^{
+        _profileImage.alpha = 1;
+    } completion:nil];
+    
+    //コメントをダウンロード
     [_commentManager setFrom_user:_user.id_facebook];
     [_commentManager setTo_user:_friend.identifier];
     
