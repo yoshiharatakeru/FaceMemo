@@ -17,6 +17,7 @@
 #import "FMSwipeGestureRecognizer.h"
 #import "CommentSettingView.h"
 #import "FMTextView.h"
+#define TEXT_LIMIT_NUM 10 //100文字まで（半角全角の判別はしていない）
 
 @interface DetailViewController ()
 
@@ -191,6 +192,7 @@
             //コメント
             FMTextView *tv = (FMTextView*)[cell viewWithTag:1];
             tv.text = comment.comment;
+            tv.returnKeyType = UIReturnKeyDone;
             tv.delegate = self;
             tv.indexPath = indexPath;
             
@@ -229,6 +231,11 @@
             //日付
             UILabel *lb_date = (UILabel*)[cell viewWithTag:2];
             lb_date.text = comment.date;
+            
+            //文字制限
+            UILabel *lb_limit = (UILabel*)[cell viewWithTag:10];
+            int num = TEXT_LIMIT_NUM - tv.text.length;
+            lb_limit.text = [NSString stringWithFormat:@"%d",num];
             
             /*
              //アニメーション
@@ -284,8 +291,33 @@ return height;
 #pragma mark -
 #pragma textView delegate
 
-//編集終了後
-
+- (BOOL)textView:(FMTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+	
+    //リターンキータップ時
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    //range:変更元の文字数
+    //text:追加する文字
+    NSLog(@"textview.text:%d",textView.text);
+    NSLog(@"range.length:%d",range.length);
+    NSLog(@"text.length:%d",text.length);
+    NSLog(@"合計文字:%d",[textView.text length] + [text length] - range.length);
+    
+    //文字数制限
+    if (range.location + range.length + [text length] <= TEXT_LIMIT_NUM) {
+        if ([textView.text length] + [text length] - range.length <= TEXT_LIMIT_NUM) {
+            return YES;
+        }else{
+            return NO;
+        }
+    }
+    
+    
+	return YES;
+}
 
 - (void)textViewDidEndEditing:(FMTextView *)textView{
 
@@ -384,10 +416,10 @@ return height;
     [comment setFrom_user:_user.id_facebook];
     [comment setDisp_flg:@"false"];
     
-    [_commentManager addComment:comment];
+    [_commentManager insertComment:comment atIndex:0];
     
     //セル追加
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_commentManager.comments.count-1 inSection:2];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     //テーブル更新
