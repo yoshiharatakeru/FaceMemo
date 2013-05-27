@@ -67,7 +67,11 @@
     //設定ビューのステータス
     _settingIndexPath = nil;
     
-
+    
+    //キーボードの通知
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     NSLog(@"DetailViewController:viewDidLoad");
     
@@ -86,6 +90,11 @@
 
 
 - (void)viewWillDisappear:(BOOL)animated{
+    
+    //通知解除
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [nc removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     
     [_commentManager initProperties];
     
@@ -486,6 +495,17 @@ return height;
 
 #pragma mark -
 #pragma mark private method
+
+- (void)keyboardWillShow:(NSNotification*)sender{
+    NSLog(@"でます");
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 216, 0);
+}
+
+- (void)keyboardWillHide:(NSNotification*)sender{
+    _tableView.contentInset = UIEdgeInsetsZero;
+    NSLog(@"隠れます");
+}
+
 
 - (void)downloadComments{
     NSLog(@"friend.name:%@",_friend.name);
