@@ -111,16 +111,17 @@
         }
 
         case 1:{
-            //num =  3;
-            NSLog(@"Num:%d",_commentManager.comments.count);;
-            num = _commentManager.comments.count;
+            //追加ボタン
+            num = 1;
             
             break;
         }
         case 2:{
-            //追加ボタン
-            num = 1;
+            //num =  3;
+            NSLog(@"Num:%d",_commentManager.comments.count);;
+            num = _commentManager.comments.count;
             break;
+            
         }
         default:
             
@@ -179,7 +180,16 @@
             break;
         }
         
-        case 1:{//コメント
+        case 1:{//追加ボタン
+            
+            UIButton *bt = (UIButton*)[cell viewWithTag:1];
+            [bt addTarget:self action:@selector(addCommentPressed) forControlEvents:UIControlEventTouchUpInside];
+            
+            break;
+             
+        }
+        
+        case 2:{//コメント
             
             //NSLog(@"update comment");
             FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
@@ -189,12 +199,12 @@
             tv.text = comment.comment;
             tv.delegate = self;
             tv.indexPath = indexPath;
-
+            
             //削除ボタン
             FMButton *bt = (FMButton*)[cell viewWithTag:6];
             bt.indexPath = indexPath;
             [bt addTarget:self action:@selector(deleteBtPressed:) forControlEvents:UIControlEventTouchUpInside];
-
+            
             
             //デバッグ用にずらしてあるビューを戻しておく
             UIView *commentView = (UIView*)[cell viewWithTag:4];
@@ -209,7 +219,7 @@
             [disp_bt setImage:disp_image forState:UIControlStateNormal];
             
             [disp_bt addTarget:self action:@selector(disp_btPressed:) forControlEvents:UIControlEventTouchUpInside];
-
+            
             
             //設定ボタン
             FMButton  *button = (FMButton*)[cell viewWithTag:3];
@@ -227,26 +237,15 @@
             lb_date.text = comment.date;
             
             /*
-            //アニメーション
-            commentView.alpha = 0;
-            settingView.alpha = 0;
-            [UIView animateWithDuration:0.2 animations:^{
-                commentView.alpha = 1;
-            } completion:^(BOOL finished) {
-                settingView.alpha = 1;
-            }];
+             //アニメーション
+             commentView.alpha = 0;
+             settingView.alpha = 0;
+             [UIView animateWithDuration:0.2 animations:^{
+             commentView.alpha = 1;
+             } completion:^(BOOL finished) {
+             settingView.alpha = 1;
+             }];
              */
-            
-            break;
-             
-        }
-        
-        case 2:{
-            
-            //追加ボタン
-            UIButton *bt = (UIButton*)[cell viewWithTag:1];
-            [bt addTarget:self action:@selector(addCommentPressed) forControlEvents:UIControlEventTouchUpInside];
-            
             break;
         }
             
@@ -267,13 +266,13 @@
             
         }
         case 1:{
-            //コメント
-            height = 135;
+            height = 61;
             break;
             
         }
         case 2:{
-            height = 61;
+            //コメント
+            height = 135;
 
             break;
         }
@@ -394,12 +393,12 @@ return height;
     [_commentManager addComment:comment];
     
     //セル追加
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_commentManager.comments.count-1 inSection:1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_commentManager.comments.count-1 inSection:2];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     //テーブル更新
     for (int i = 0; i < _commentManager.comments.count; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:1];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:2];
         UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
         [self updateCell:cell atIndexPath:indexPath];
     }
@@ -413,12 +412,12 @@ return height;
     [_commentManager removeCommentAtIndex:bt.indexPath.row];
     
     //セル削除
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.indexPath.row inSection:1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bt.indexPath.row inSection:2];
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     //テーブル更新
     for (int i = 0; i < _commentManager.comments.count; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:1];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:2];
         UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
         [self updateCell:cell atIndexPath:indexPath];
     }
@@ -517,8 +516,8 @@ return height;
             NSInteger num  = [_commentManager.comments indexOfObject:comment];
             NSLog(@"test:num:%d",num);
             NSLog(@"comments:%d",_commentManager.comments.count);
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:1];
-            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:2];
+            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             
         });
     }
