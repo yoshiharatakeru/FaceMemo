@@ -16,6 +16,7 @@
 #import "FMButton.h"
 #import "FMSwipeGestureRecognizer.h"
 #import "CommentSettingView.h"
+#import "FMTextView.h"
 
 @interface DetailViewController ()
 
@@ -26,7 +27,8 @@
   UITextFieldDelegate,
   FMCommentNetworkOperationDelegate,
   FMConnectorDelegate,
-  MBProgressHUDDelegate
+  MBProgressHUDDelegate,
+  UITextViewDelegate
 >
 
 @end
@@ -173,38 +175,36 @@
         }
         
         case 1:{//コメント
-            NSLog(@"update comment");
+            //NSLog(@"update comment");
             FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
-            /*
+            
             //コメント
-            //MyTextField *tf = (MyTextField*)[cell viewWithTag:1];
-            //tf.text = comment.comment;
-            //tf.delegate = self;
-            //tf.indexPath = indexPath;
+            FMTextView *tv = (FMTextView*)[cell viewWithTag:1];
+            tv.text = comment.comment;
+            tv.delegate = self;
+            tv.indexPath = indexPath;
 
             
             //削除ボタン
-            FMButton *bt = (FMButton*)[cell viewWithTag:2];
+            FMButton *bt = (FMButton*)[cell viewWithTag:6];
             bt.indexPath = indexPath;
             [bt addTarget:self action:@selector(deleteBtPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+            
+            //デバッグ用にずらしてあるビューを戻しておく
+            UIView *commentView = (UIView*)[cell viewWithTag:4];
+            commentView.center = cell.contentView.center;
             
             //公開スイッチ
-            FMSwitch *sw = (FMSwitch*)[cell viewWithTag:3];
-            [sw addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
-            sw.indexPath = indexPath;
-            sw.on = ([comment.disp_flg isEqualToString:@"true"])? YES:NO;
-            NSLog(@"disp_flg:%@",comment.disp_flg);
-            */
+            FMButton *disp_bt = (FMButton*)[cell viewWithTag:5];
+            disp_bt.indexPath =  indexPath;
             
-            //設定用ビュー
-            UIImageView *backView = (UIImageView*)[cell viewWithTag:4];
-            CommentSettingView *view = [[CommentSettingView alloc]init];
-            [cell.contentView insertSubview:view belowSubview:backView];
-            
-            //公開スイッチ
-            [view.switch_bt addTarget:self action:@selector(disp_btPressde:) forControlEvents:UIControlEventTouchUpInside];
+            UIImage *disp_image = ([comment.disp_flg isEqualToString:@"true"])? [UIImage imageNamed:@"on_image"]:[UIImage imageNamed:@"off_image"];
+            [disp_bt setImage:disp_image forState:UIControlStateNormal];
             
             
+            [disp_bt addTarget:self action:@selector(disp_btPressed:) forControlEvents:UIControlEventTouchUpInside];
+
             
             //設定ボタン
             FMButton  *button = (FMButton*)[cell viewWithTag:3];
@@ -228,12 +228,10 @@
         }
         
         case 2:{
-            /*
+            
             //追加ボタン
             UIButton *bt = (UIButton*)[cell viewWithTag:1];
             [bt addTarget:self action:@selector(addCommentPressed) forControlEvents:UIControlEventTouchUpInside];
-
-            */
             
             break;
         }
@@ -277,36 +275,48 @@ return height;
 
 
 #pragma mark -
-#pragma textField delegate
+#pragma textView delegate
 
 //編集終了後
-- (void)textFieldDidEndEditing:(MyTextField *)textField{
-    NSLog(@"indexpath.row:%d",textField.indexPath.row);
-    NSLog(@"comment:%@",textField.text);
-    
-    FMComment *comment = [_commentManager.comments objectAtIndex:textField.indexPath.row];
-    [comment setComment:textField.text];
-    
-}
 
 
-- (BOOL)textFieldShouldReturn:(MyTextField *)textField{
-    [textField resignFirstResponder];
+- (void)textViewDidEndEditing:(FMTextView *)textView{
+
+    NSLog(@"indexpath.row:%d",textView.indexPath.row);
+    NSLog(@"comment:%@",textView.text);
+    
+    FMComment *comment = [_commentManager.comments objectAtIndex:textView.indexPath.row];
+    [comment setComment:textView.text];
 }
 
 
 #pragma mark -
 #pragma mark button action
 
-- (void)disp_btPressde:(UIButton*)bt{
-    NSLog(@"push");
-    bt.imageView.image = [UIImage imageNamed:@"on_image"];
+- (void)disp_btPressed:(FMButton*)bt{
+    
+    
+    FMComment *comment = _commentManager.comments[bt.indexPath.row];
+    NSLog(@"disp_btPressed:indexpath.row:%d disp_flg:%@",bt.indexPath.row, comment.disp_flg);
+
+    
+    if ([comment.disp_flg isEqualToString:@"true"]) {
+        comment.disp_flg = @"false";
+        [bt setImage:[UIImage imageNamed:@"off_image"] forState:UIControlStateNormal];
+
+        
+    }else{
+        comment.disp_flg = @"true";
+        [bt setImage:[UIImage imageNamed:@"on_image"] forState:UIControlStateNormal];
+    }
+    
 }
 
 
 
 - (void)settingBtPressed:(FMButton*)bt{
     
+    NSLog(@"settingBtPressed");
     [self moveSettingViewAtIndexPath:bt.indexPath];
  
 }
@@ -328,10 +338,7 @@ return height;
     
     NSLog(@"settingBtPressedd");
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-    UIImageView *baseView = (UIImageView*)[cell viewWithTag:4];
-    UITextView *commentView = (UITextView*)[cell viewWithTag:1];
-    UILabel *dateLabel = (UILabel*)[cell viewWithTag:2];
-    FMButton  *settingBt = (FMButton*)[cell viewWithTag:3];
+    UIView *commentView = (UIView*)[cell viewWithTag:4];
     
     if (_settingIndexPath.row!=indexPath.row && _settingIndexPath) {
         return;
@@ -340,10 +347,7 @@ return height;
     if (!_settingIndexPath) {
         //開く
         [UIView animateWithDuration:0.2 animations:^{
-            baseView.center = CGPointMake(0, baseView.center.y);
-            commentView.center = CGPointMake(commentView.center.x - 160, commentView.center.y);
-            dateLabel.center = CGPointMake(dateLabel.center.x-160, dateLabel.center.y);
-            settingBt.center = CGPointMake(settingBt.center.x-160, settingBt.center.y);
+            commentView.center = CGPointMake(commentView.center.x-185, commentView.center.y);
         }];
         
         _settingIndexPath = indexPath;
@@ -354,10 +358,7 @@ return height;
     if (_settingIndexPath) {
         //閉じる
         [UIView animateWithDuration:0.2 animations:^{
-            baseView.center = cell.contentView.center;
-            commentView.center = CGPointMake(commentView.center.x + 160, commentView.center.y);
-            dateLabel.center = CGPointMake(dateLabel.center.x + 160, dateLabel.center.y);
-            settingBt.center = CGPointMake(settingBt.center.x + 160, settingBt.center.y);
+            commentView.center = cell.contentView.center;
         }];
         
         _settingIndexPath = nil;
@@ -403,6 +404,10 @@ return height;
         [self updateCell:cell atIndexPath:[_tableView indexPathForCell:cell]];
         
     }
+    
+    _settingIndexPath = nil;
+    
+    
     
 }
 
