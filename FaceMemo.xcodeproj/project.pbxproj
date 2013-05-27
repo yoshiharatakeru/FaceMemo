@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		050CA83A174E1ACB00EC61B4 /* FMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050CA839174E1ACB00EC61B4 /* FMTextView.m */; };
 		050CE691174E361F002FB9BB /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE690174E361F002FB9BB /* profile@2x.png */; };
-		050CE693174E3747002FB9BB /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE692174E3747002FB9BB /* addbutton.png */; };
-		050CE695174E3BBE002FB9BB /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE694174E3BBE002FB9BB /* setting@2x.png */; };
 		050CE697174E3CAF002FB9BB /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE696174E3CAF002FB9BB /* button@2x.png */; };
 		050CE69E174E3F77002FB9BB /* back_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE69C174E3F77002FB9BB /* back_bt@2x.png */; };
 		050CE69F174E3F77002FB9BB /* fin_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE69D174E3F77002FB9BB /* fin_bt@2x.png */; };
@@ -30,6 +28,11 @@
 		05436530173A506400A2D82F /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05436522173A506400A2D82F /* SBJsonTokeniser.m */; };
 		05436531173A506400A2D82F /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 05436524173A506400A2D82F /* SBJsonUTF8Stream.m */; };
 		05436532173A506400A2D82F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05436526173A506400A2D82F /* SBJsonWriter.m */; };
+		0551BCD21753029B00DD4388 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0551BCD11753029B00DD4388 /* setting@2x.png */; };
+		0551BCD4175302BC00DD4388 /* setting_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0551BCD3175302BC00DD4388 /* setting_view@2x.png */; };
+		0551BCD6175303E100DD4388 /* delete_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0551BCD5175303E100DD4388 /* delete_bt@2x.png */; };
+		0551BCDD17531DD900DD4388 /* off_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0551BCDB17531DD900DD4388 /* off_image@2x.png */; };
+		0551BCDE17531DD900DD4388 /* on_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0551BCDC17531DD900DD4388 /* on_image@2x.png */; };
 		055CFAD5174257F600145C10 /* FMCommentNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CFAD4174257F600145C10 /* FMCommentNetworkOperation.m */; };
 		056E42DE173E367F00534D8B /* FMComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42D8173E367F00534D8B /* FMComment.m */; };
 		056E42DF173E367F00534D8B /* FMCommentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42DA173E367F00534D8B /* FMCommentManager.m */; };
@@ -40,6 +43,11 @@
 		056E42EC173E371700534D8B /* MyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E42EB173E371700534D8B /* MyTextField.m */; };
 		056E432617411F0D00534D8B /* FMConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E432517411F0D00534D8B /* FMConnector.m */; };
 		056E4329174125F900534D8B /* FMJsonParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056E4328174125F900534D8B /* FMJsonParseOperation.m */; };
+		0595577D174F4D45005A84F8 /* tab_brar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0595577C174F4D45005A84F8 /* tab_brar@2x.png */; };
+		0595577F174F53F0005A84F8 /* addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0595577E174F53F0005A84F8 /* addbutton@2x.png */; };
+		05955785174F6C56005A84F8 /* FMSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05955784174F6C56005A84F8 /* FMSwipeGestureRecognizer.m */; };
+		0595578A1752F76C005A84F8 /* CommentSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059557891752F76C005A84F8 /* CommentSettingView.xib */; };
+		0595578D1752F931005A84F8 /* CommentSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595578C1752F931005A84F8 /* CommentSettingView.m */; };
 		0596ABEE174744280020144B /* FMSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABED174744280020144B /* FMSwitch.m */; };
 		0596ABF117477CC10020144B /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF017477CC10020144B /* LeftViewController.m */; };
 		0596ABF41747848E0020144B /* FMControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF31747848D0020144B /* FMControllerManager.m */; };
@@ -49,7 +57,6 @@
 		05AA7CEF174A25100034B054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA7CED174A25100034B054 /* InfoPlist.strings */; };
 		05AA7CF2174A25100034B054 /* FaceMemoUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA7CF1174A25100034B054 /* FaceMemoUnitTests.m */; };
 		05AA7CF8174A25330034B054 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA7CF7174A25330034B054 /* SenTestingKit.framework */; };
-		05C26096174CF9DE0047C63E /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C26095174CF9DE0047C63E /* tabbar@2x.png */; };
 		05C2609B174CFE620047C63E /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C2609A174CFE620047C63E /* comment@2x.png */; };
 		05CF527E174A49CC0006B9CC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CF527D174A49CC0006B9CC /* MBProgressHUD.m */; };
 		05CF5282174A64380006B9CC /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF5280174A64380006B9CC /* 37x-Checkmark.png */; };
@@ -94,8 +101,6 @@
 		050CA838174E1ACB00EC61B4 /* FMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMTextView.h; path = ../../FMTextView.h; sourceTree = "<group>"; };
 		050CA839174E1ACB00EC61B4 /* FMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMTextView.m; path = ../../FMTextView.m; sourceTree = "<group>"; };
 		050CE690174E361F002FB9BB /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
-		050CE692174E3747002FB9BB /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
-		050CE694174E3BBE002FB9BB /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 		050CE696174E3CAF002FB9BB /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
 		050CE69C174E3F77002FB9BB /* back_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_bt@2x.png"; sourceTree = "<group>"; };
 		050CE69D174E3F77002FB9BB /* fin_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fin_bt@2x.png"; sourceTree = "<group>"; };
@@ -129,6 +134,11 @@
 		05436524173A506400A2D82F /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		05436525173A506400A2D82F /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		05436526173A506400A2D82F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		0551BCD11753029B00DD4388 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		0551BCD3175302BC00DD4388 /* setting_view@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_view@2x.png"; sourceTree = "<group>"; };
+		0551BCD5175303E100DD4388 /* delete_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_bt@2x.png"; sourceTree = "<group>"; };
+		0551BCDB17531DD900DD4388 /* off_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "off_image@2x.png"; sourceTree = "<group>"; };
+		0551BCDC17531DD900DD4388 /* on_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on_image@2x.png"; sourceTree = "<group>"; };
 		055CFAD3174257F600145C10 /* FMCommentNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMCommentNetworkOperation.h; path = ../Model/FMCommentNetworkOperation.h; sourceTree = "<group>"; };
 		055CFAD4174257F600145C10 /* FMCommentNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMCommentNetworkOperation.m; path = ../Model/FMCommentNetworkOperation.m; sourceTree = "<group>"; };
 		056E42D8173E367F00534D8B /* FMComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMComment.m; sourceTree = "<group>"; };
@@ -149,6 +159,13 @@
 		056E432517411F0D00534D8B /* FMConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMConnector.m; sourceTree = "<group>"; };
 		056E4327174125F900534D8B /* FMJsonParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMJsonParseOperation.h; sourceTree = "<group>"; };
 		056E4328174125F900534D8B /* FMJsonParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMJsonParseOperation.m; sourceTree = "<group>"; };
+		0595577C174F4D45005A84F8 /* tab_brar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_brar@2x.png"; sourceTree = "<group>"; };
+		0595577E174F53F0005A84F8 /* addbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addbutton@2x.png"; sourceTree = "<group>"; };
+		05955783174F6C56005A84F8 /* FMSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMSwipeGestureRecognizer.h; path = ../../FMSwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		05955784174F6C56005A84F8 /* FMSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMSwipeGestureRecognizer.m; path = ../../FMSwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		059557891752F76C005A84F8 /* CommentSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentSettingView.xib; sourceTree = "<group>"; };
+		0595578B1752F931005A84F8 /* CommentSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentSettingView.h; sourceTree = "<group>"; };
+		0595578C1752F931005A84F8 /* CommentSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentSettingView.m; sourceTree = "<group>"; };
 		0596ABEC174744280020144B /* FMSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMSwitch.h; sourceTree = "<group>"; };
 		0596ABED174744280020144B /* FMSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMSwitch.m; sourceTree = "<group>"; };
 		0596ABEF17477CC00020144B /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftViewController.h; path = ../../LeftViewController.h; sourceTree = "<group>"; };
@@ -156,7 +173,7 @@
 		0596ABF21747848D0020144B /* FMControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMControllerManager.h; path = ../../FMControllerManager.h; sourceTree = "<group>"; };
 		0596ABF31747848D0020144B /* FMControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMControllerManager.m; path = ../../FMControllerManager.m; sourceTree = "<group>"; };
 		0596ABF5174794340020144B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = ../../UserViewController.h; sourceTree = "<group>"; };
-		0596ABF6174794340020144B /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		0596ABF6174794340020144B /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = ../../UserViewController.m; sourceTree = "<group>"; };
 		05AA7CE5174A25100034B054 /* FaceMemoUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMemoUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA7CEC174A25100034B054 /* FaceMemoUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceMemoUnitTests-Info.plist"; sourceTree = "<group>"; };
 		05AA7CEE174A25100034B054 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -164,7 +181,6 @@
 		05AA7CF1174A25100034B054 /* FaceMemoUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceMemoUnitTests.m; sourceTree = "<group>"; };
 		05AA7CF3174A25100034B054 /* FaceMemoUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceMemoUnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		05AA7CF7174A25330034B054 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		05C26095174CF9DE0047C63E /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
 		05C2609A174CFE620047C63E /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
 		05CF527C174A49CC0006B9CC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		05CF527D174A49CC0006B9CC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -272,6 +288,8 @@
 		056E42D5173E357E00534D8B /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				05955783174F6C56005A84F8 /* FMSwipeGestureRecognizer.h */,
+				05955784174F6C56005A84F8 /* FMSwipeGestureRecognizer.m */,
 				050CA838174E1ACB00EC61B4 /* FMTextView.h */,
 				050CA839174E1ACB00EC61B4 /* FMTextView.m */,
 				0596ABEC174744280020144B /* FMSwitch.h */,
@@ -306,6 +324,7 @@
 		056E42D7173E35F000534D8B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0596ABF6174794340020144B /* UserViewController.m */,
 				0596ABF21747848D0020144B /* FMControllerManager.h */,
 				0596ABF31747848D0020144B /* FMControllerManager.m */,
 				0596ABF5174794340020144B /* UserViewController.h */,
@@ -342,6 +361,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		059557881752F76C005A84F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				059557891752F76C005A84F8 /* CommentSettingView.xib */,
+				0595578B1752F931005A84F8 /* CommentSettingView.h */,
+				0595578C1752F931005A84F8 /* CommentSettingView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		05AA7CEA174A25100034B054 /* FaceMemoUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,8 +396,8 @@
 			children = (
 				050CE6AA174E4DB8002FB9BB /* menu@2x.png */,
 				050CE6A8174E4CA7002FB9BB /* table@2x.png */,
+				0595577C174F4D45005A84F8 /* tab_brar@2x.png */,
 				050CE6A4174E4B26002FB9BB /* search@2x.png */,
-				05C26095174CF9DE0047C63E /* tabbar@2x.png */,
 			);
 			path = FriendsViewController;
 			sourceTree = "<group>";
@@ -376,10 +405,14 @@
 		05C26097174CFBE40047C63E /* DetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				050CE692174E3747002FB9BB /* addbutton.png */,
-				050CE694174E3BBE002FB9BB /* setting@2x.png */,
+				0595577E174F53F0005A84F8 /* addbutton@2x.png */,
+				0551BCD11753029B00DD4388 /* setting@2x.png */,
 				050CE696174E3CAF002FB9BB /* button@2x.png */,
+				0551BCD5175303E100DD4388 /* delete_bt@2x.png */,
 				05C2609A174CFE620047C63E /* comment@2x.png */,
+				0551BCDB17531DD900DD4388 /* off_image@2x.png */,
+				0551BCDC17531DD900DD4388 /* on_image@2x.png */,
+				0551BCD3175302BC00DD4388 /* setting_view@2x.png */,
 				050CE69C174E3F77002FB9BB /* back_bt@2x.png */,
 				050CE69D174E3F77002FB9BB /* fin_bt@2x.png */,
 				050CE690174E361F002FB9BB /* profile@2x.png */,
@@ -413,7 +446,6 @@
 				05CF527F174A64270006B9CC /* images */,
 				05CF527B174A49CC0006B9CC /* MBProgressHUD */,
 				05AA7CF7174A25330034B054 /* SenTestingKit.framework */,
-				0596ABF6174794340020144B /* UserViewController.m */,
 				05D47156172C2D8800556FDC /* FaceMemo */,
 				05AA7CEA174A25100034B054 /* FaceMemoUnitTests */,
 				05D4714F172C2D8800556FDC /* Frameworks */,
@@ -451,6 +483,7 @@
 		05D47156172C2D8800556FDC /* FaceMemo */ = {
 			isa = PBXGroup;
 			children = (
+				059557881752F76C005A84F8 /* View */,
 				056E432317411E0000534D8B /* Network */,
 				05D47168172C2D8800556FDC /* MainStoryboard.storyboard */,
 				056E42D7173E35F000534D8B /* Controller */,
@@ -563,17 +596,22 @@
 				05FB4BD9172CFD14006AEF79 /* FacebookSDKResources.bundle in Resources */,
 				05CF5282174A64380006B9CC /* 37x-Checkmark.png in Resources */,
 				05CF5283174A64380006B9CC /* 37x-Checkmark@2x.png in Resources */,
-				05C26096174CF9DE0047C63E /* tabbar@2x.png in Resources */,
 				05C2609B174CFE620047C63E /* comment@2x.png in Resources */,
 				050CE691174E361F002FB9BB /* profile@2x.png in Resources */,
-				050CE693174E3747002FB9BB /* addbutton.png in Resources */,
-				050CE695174E3BBE002FB9BB /* setting@2x.png in Resources */,
 				050CE697174E3CAF002FB9BB /* button@2x.png in Resources */,
 				050CE69E174E3F77002FB9BB /* back_bt@2x.png in Resources */,
 				050CE69F174E3F77002FB9BB /* fin_bt@2x.png in Resources */,
 				050CE6A5174E4B26002FB9BB /* search@2x.png in Resources */,
 				050CE6A9174E4CA7002FB9BB /* table@2x.png in Resources */,
 				050CE6AB174E4DB8002FB9BB /* menu@2x.png in Resources */,
+				0595577D174F4D45005A84F8 /* tab_brar@2x.png in Resources */,
+				0595577F174F53F0005A84F8 /* addbutton@2x.png in Resources */,
+				0595578A1752F76C005A84F8 /* CommentSettingView.xib in Resources */,
+				0551BCD21753029B00DD4388 /* setting@2x.png in Resources */,
+				0551BCD4175302BC00DD4388 /* setting_view@2x.png in Resources */,
+				0551BCD6175303E100DD4388 /* delete_bt@2x.png in Resources */,
+				0551BCDD17531DD900DD4388 /* off_image@2x.png in Resources */,
+				0551BCDE17531DD900DD4388 /* on_image@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +683,8 @@
 				0596ABF7174794340020144B /* UserViewController.m in Sources */,
 				05CF527E174A49CC0006B9CC /* MBProgressHUD.m in Sources */,
 				050CA83A174E1ACB00EC61B4 /* FMTextView.m in Sources */,
+				05955785174F6C56005A84F8 /* FMSwipeGestureRecognizer.m in Sources */,
+				0595578D1752F931005A84F8 /* CommentSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

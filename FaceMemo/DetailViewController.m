@@ -13,8 +13,13 @@
 #import "MyTextField.h"
 #import "FMCommentNetworkOperation.h"
 #import "FMSwitch.h"
+#import "FMButton.h"
+#import "FMSwipeGestureRecognizer.h"
+#import "CommentSettingView.h"
 
 @interface DetailViewController ()
+
+
 
 < UITableViewDataSource,
   UITableViewDelegate,
@@ -24,11 +29,14 @@
   MBProgressHUDDelegate
 >
 
-
-
 @end
 
 @implementation DetailViewController
+
+{
+    NSIndexPath *_settingIndexPath;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +57,10 @@
     
     //model準備
     _commentManager= [FMCommentManager sharedManager];
+    
+    //設定ビューのステータス
+    _settingIndexPath = nil;
+    
     
     NSLog(@"DetailViewController:viewDidLoad");
     
@@ -161,7 +173,7 @@
         }
         
         case 1:{//コメント
-            
+            NSLog(@"update comment");
             FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
             /*
             //コメント
@@ -183,6 +195,28 @@
             sw.on = ([comment.disp_flg isEqualToString:@"true"])? YES:NO;
             NSLog(@"disp_flg:%@",comment.disp_flg);
             */
+            
+            //設定用ビュー
+            UIImageView *backView = (UIImageView*)[cell viewWithTag:4];
+            CommentSettingView *view = [[CommentSettingView alloc]init];
+            [cell.contentView insertSubview:view belowSubview:backView];
+            
+            //公開スイッチ
+            [view.switch_bt addTarget:self action:@selector(disp_btPressde:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            
+            //設定ボタン
+            FMButton  *button = (FMButton*)[cell viewWithTag:3];
+            button.indexPath = indexPath;
+            [button addTarget:self action:@selector(settingBtPressed:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //ジェスチャ
+            FMSwipeGestureRecognizer *ges;
+            ges = [[FMSwipeGestureRecognizer alloc]initWithTarget:self action:@selector(didSwipe:)];
+            ges.indexPath = indexPath;
+            [cell.contentView addGestureRecognizer:ges];
+            
             
             
             //日付
@@ -216,13 +250,13 @@
     switch (indexPath.section) {
         case 0:{
             //フレンドの基本情報
-            height = 122;
+            height = 135;
             break;
             
         }
         case 1:{
             //コメント
-            height = 122;
+            height = 135;
             break;
             
         }
@@ -263,6 +297,77 @@ return height;
 
 #pragma mark -
 #pragma mark button action
+
+- (void)disp_btPressde:(UIButton*)bt{
+    NSLog(@"push");
+    bt.imageView.image = [UIImage imageNamed:@"on_image"];
+}
+
+
+
+- (void)settingBtPressed:(FMButton*)bt{
+    
+    [self moveSettingViewAtIndexPath:bt.indexPath];
+ 
+}
+
+- (void)didSwipe:(FMSwipeGestureRecognizer*)ges{
+    
+    if (ges.state == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"left");
+    }
+    
+    if (ges.state == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"right");
+    }
+    
+}
+
+
+- (void)moveSettingViewAtIndexPath:(NSIndexPath*)indexPath{
+    
+    NSLog(@"settingBtPressedd");
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+    UIImageView *baseView = (UIImageView*)[cell viewWithTag:4];
+    UITextView *commentView = (UITextView*)[cell viewWithTag:1];
+    UILabel *dateLabel = (UILabel*)[cell viewWithTag:2];
+    FMButton  *settingBt = (FMButton*)[cell viewWithTag:3];
+    
+    if (_settingIndexPath.row!=indexPath.row && _settingIndexPath) {
+        return;
+    }
+    
+    if (!_settingIndexPath) {
+        //開く
+        [UIView animateWithDuration:0.2 animations:^{
+            baseView.center = CGPointMake(0, baseView.center.y);
+            commentView.center = CGPointMake(commentView.center.x - 160, commentView.center.y);
+            dateLabel.center = CGPointMake(dateLabel.center.x-160, dateLabel.center.y);
+            settingBt.center = CGPointMake(settingBt.center.x-160, settingBt.center.y);
+        }];
+        
+        _settingIndexPath = indexPath;
+        
+        return;
+    }
+    
+    if (_settingIndexPath) {
+        //閉じる
+        [UIView animateWithDuration:0.2 animations:^{
+            baseView.center = cell.contentView.center;
+            commentView.center = CGPointMake(commentView.center.x + 160, commentView.center.y);
+            dateLabel.center = CGPointMake(dateLabel.center.x + 160, dateLabel.center.y);
+            settingBt.center = CGPointMake(settingBt.center.x + 160, settingBt.center.y);
+        }];
+        
+        _settingIndexPath = nil;
+        
+        return;
+    }
+    
+}
+
+
 
 - (void)addCommentPressed{
     FMComment *comment = FMComment.new;
@@ -382,8 +487,13 @@ return height;
         NSString *disp_flg = ([[res objectForKey:@"disp_flg"]intValue] == 1)? @"true":@"false";
         [comment setDisp_flg:disp_flg];
         [comment setDate:[res objectForKey:@"created_at"]];
-        
+      
         [_commentManager addComment:comment];
+        
+            NSInteger num  = [_commentManager.comments indexOfObject:comment];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:1];
+            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+            [self updateCell:cell atIndexPath:indexPath];
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
