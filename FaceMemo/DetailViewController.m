@@ -168,13 +168,19 @@
             
             //写真
             FBProfilePictureView *ProView = (FBProfilePictureView*)[cell viewWithTag:1];
+            ProView.alpha = 0;
             ProView.profileID = _friend.identifier;
+            //アニメーション
+            [UIView animateWithDuration:0.2 animations:^{
+                ProView.alpha = 1;
+            } completion:nil];
             
             
             break;
         }
         
         case 1:{//コメント
+            
             //NSLog(@"update comment");
             FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
             
@@ -184,7 +190,6 @@
             tv.delegate = self;
             tv.indexPath = indexPath;
 
-            
             //削除ボタン
             FMButton *bt = (FMButton*)[cell viewWithTag:6];
             bt.indexPath = indexPath;
@@ -193,6 +198,7 @@
             
             //デバッグ用にずらしてあるビューを戻しておく
             UIView *commentView = (UIView*)[cell viewWithTag:4];
+            UIView *settingView = (UIView*)[cell viewWithTag:8];
             commentView.center = cell.contentView.center;
             
             //公開スイッチ
@@ -201,7 +207,6 @@
             
             UIImage *disp_image = ([comment.disp_flg isEqualToString:@"true"])? [UIImage imageNamed:@"on_image"]:[UIImage imageNamed:@"off_image"];
             [disp_bt setImage:disp_image forState:UIControlStateNormal];
-            
             
             [disp_bt addTarget:self action:@selector(disp_btPressed:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -217,11 +222,20 @@
             ges.indexPath = indexPath;
             [cell.contentView addGestureRecognizer:ges];
             
-            
-            
             //日付
             UILabel *lb_date = (UILabel*)[cell viewWithTag:2];
             lb_date.text = comment.date;
+            
+            /*
+            //アニメーション
+            commentView.alpha = 0;
+            settingView.alpha = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                commentView.alpha = 1;
+            } completion:^(BOOL finished) {
+                settingView.alpha = 1;
+            }];
+             */
             
             break;
              
@@ -371,6 +385,7 @@ return height;
 
 
 - (void)addCommentPressed{
+    
     FMComment *comment = FMComment.new;
     [comment setTo_user:_friend.identifier];
     [comment setFrom_user:_user.id_facebook];
@@ -383,10 +398,12 @@ return height;
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     //テーブル更新
-    for (UITableViewCell *cell in _tableView.visibleCells) {
-        [self updateCell:cell atIndexPath:[_tableView indexPathForCell:cell]];
-     
+    for (int i = 0; i < _commentManager.comments.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:1];
+        UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+        [self updateCell:cell atIndexPath:indexPath];
     }
+
     
 }
 
@@ -400,9 +417,10 @@ return height;
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     //テーブル更新
-    for (UITableViewCell *cell in _tableView.visibleCells) {
-        [self updateCell:cell atIndexPath:[_tableView indexPathForCell:cell]];
-        
+    for (int i = 0; i < _commentManager.comments.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:1];
+        UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+        [self updateCell:cell atIndexPath:indexPath];
     }
     
     _settingIndexPath = nil;
@@ -493,17 +511,21 @@ return height;
         [comment setDisp_flg:disp_flg];
         [comment setDate:[res objectForKey:@"created_at"]];
       
-        [_commentManager addComment:comment];
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_commentManager addComment:comment];
             NSInteger num  = [_commentManager.comments indexOfObject:comment];
+            NSLog(@"test:num:%d",num);
+            NSLog(@"comments:%d",_commentManager.comments.count);
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:1];
-            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-            [self updateCell:cell atIndexPath:indexPath];
+            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+        });
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         //テーブル更新
-        [_tableView reloadData];
+        //[_tableView reloadData];
         [_HUD hide:YES];
     });
     

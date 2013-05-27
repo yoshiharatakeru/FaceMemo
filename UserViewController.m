@@ -107,15 +107,23 @@
         //写真
         FBProfilePictureView *pv = (FBProfilePictureView*)[cell viewWithTag:1];
         pv.profileID = _user.id_facebook;
+        
         //名前
         UILabel *lb = (UILabel*)[cell viewWithTag:2];
         lb.text = _user.name;
+ 
     }
     
     if (indexPath.section == 1) {
+        
+        //コメント
         FMComment *comment = [_commentManager.comments objectAtIndex:indexPath.row];
         UITextView *tv = (UITextView*)[cell viewWithTag:1];
         tv.text = comment.comment;
+        
+        //日付
+        UILabel *lb  = (UILabel*)[cell viewWithTag:2];
+        lb.text =comment.date;
         
     }
     
@@ -125,11 +133,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 200;
+        return 135;
     }
     
     if (indexPath.section == 1) {
-        return 145;
+        return 135;
     }
     
 
@@ -168,16 +176,20 @@
         [comment setTo_user:[res objectForKey:@"to_user"]];
         [comment setFrom_user:[res objectForKey:@"from_user"]];
         [comment setComment:[res objectForKey:@"memo"]];
+        [comment setDate:res[@"updated_at"]];
         NSString *disp_flg = ([[res objectForKey:@"disp_flg"]intValue] == 1)? @"true":@"false";
         [comment setDisp_flg:disp_flg];
         
-        [_commentManager addComment:comment];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_commentManager addComment:comment];
+            NSInteger num  = [_commentManager.comments indexOfObject:comment];
+            NSLog(@"test:num:%d",num);
+            NSLog(@"comments:%d",_commentManager.comments.count);
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:1];
+            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+        });
     }
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_tableView reloadData];
-    });
     
     
 }

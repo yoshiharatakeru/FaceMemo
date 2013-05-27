@@ -14,6 +14,7 @@
 #import "FMFriend.h"
 #import "DetailViewController.h"
 #import "FMControllerManager.h"
+#import "MyTextField.h"
 
 @interface FriendsViewController ()
 
@@ -22,7 +23,8 @@ UITableViewDataSource,
 UITableViewDelegate,
 LoginViewControllerDelegate,
 UITextFieldDelegate,
-LeftViewControllerDelegate
+LeftViewControllerDelegate,
+UIScrollViewDelegate
 >
 
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profileImage;
@@ -30,7 +32,7 @@ LeftViewControllerDelegate
 @property (weak, nonatomic) IBOutlet UIButton *getFriendBt;
 @property (strong, nonatomic) NSMutableArray *arrayFriends;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextField *serchField;
+@property (weak, nonatomic) IBOutlet MyTextField *serchField;
 
 @end
 
@@ -168,6 +170,7 @@ LeftViewControllerDelegate
         }
 
         [_friendManager initFriends];
+        [_tableView reloadData];
         
         NSArray *data = [result objectForKey:@"data"];
         
@@ -178,10 +181,13 @@ LeftViewControllerDelegate
             [_friendManager addFriend:friend];
             
             //テーブルビュー更新
+            NSLog(@"FriendsViewCon:data.count:%d",data.count);
+            NSLog(@"FriendsViewCon:friends.count:%d",_friendManager.friends.count);
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[data indexOfObject:dic] inSection:0];
             [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
         }
         
+        [_tableView reloadData];
         //検索用に変化しないarrayを作成
         [_friendManager setAllFriends:[[NSArray alloc]initWithArray:_friendManager.friends] ];
 
@@ -217,10 +223,8 @@ LeftViewControllerDelegate
            NSDictionary<FBGraphUser> *user,
            NSError *error) {
              if (!error) {
-                 _profileName.text = user.name;
-                 _profileImage.profileID = user.id;
                  
-                  //FMUserモデルクラスを作成してデータベースに保存
+                 //FMUserモデルクラスを作成してデータベースに保存
                  //TODO場所がここだとマズイ。ログインアクションの直後に置きたい
                  _user = [FMUser sharedInstance];
                  [_user setFirst_name:user.first_name];
@@ -268,7 +272,11 @@ LeftViewControllerDelegate
     lb_name.text = friend.name;
     
     //写真
-    picView.profileID  = friend.identifier;
+    picView.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        picView.profileID  = friend.identifier;
+        picView.alpha = 1;
+    } completion:nil];
     
 }
 
@@ -290,6 +298,14 @@ LeftViewControllerDelegate
     
 }
 
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"スクロール");
+    [self.view endEditing:YES];
+}
 
 #pragma mark -
 #pragma mark LeftViewControllerDelegate
@@ -327,7 +343,7 @@ LeftViewControllerDelegate
 #pragma mark -
 #pragma mark UITextfieldDelegate
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+-(BOOL)textField:(MyTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
     NSString *result = [textField.text stringByReplacingCharactersInRange:range withString:string];
     

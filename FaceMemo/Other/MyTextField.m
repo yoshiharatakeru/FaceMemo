@@ -19,6 +19,12 @@
     return self;
 }
 
+- (void)drawPlaceholderInRect:(CGRect)rect{
+    [[UIColor grayColor]setFill];
+    [[self placeholder]drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
+}
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
