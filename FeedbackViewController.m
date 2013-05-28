@@ -1,18 +1,18 @@
 //
-//  LicenceViewController.m
+//  FeedbackViewController.m
 //  FaceMemo
 //
 //  Created by Takeru Yoshihara on 2013/05/28.
 //  Copyright (c) 2013年 Takeru Yoshihara. All rights reserved.
 //
 
-#import "LicenceViewController.h"
+#import "FeedbackViewController.h"
 
-@interface LicenceViewController ()
+@interface FeedbackViewController ()
 
 @end
 
-@implementation LicenceViewController
+@implementation FeedbackViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,12 +33,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)backBtPressed:(id)sender {
-    
-    [self.viewDeckController closeRightViewAnimated:YES];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "InformationViewController.h"
+#import "LicenceViewController.h"
 
 
 @interface InformationViewController ()
@@ -91,6 +92,16 @@ UITableViewDelegate>
     return 50;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 1) {
+        LicenceViewController *licenceViewCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LicenceViewController"];
+        [self.viewDeckController setRightController:licenceViewCon];
+        self.viewDeckController.rightSize = 0;
+        [self.viewDeckController toggleRightViewAnimated:YES];
+    }
+}
 
 - (IBAction)backBtPressed:(id)sender {
     
