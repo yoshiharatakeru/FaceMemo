@@ -10,6 +10,7 @@
 #import "FriendsViewController.h"
 #import "FMControllerManager.h"
 #import "UserViewController.h"
+#import "InformationViewController.h"
 
 @interface LeftViewController ()
 <
@@ -142,7 +143,12 @@ UIAlertViewDelegate
         }
         
             
-        case 2:{//setting
+        case 2:{//information
+            InformationViewController *infoViewCon = [self.storyboard instantiateViewControllerWithIdentifier:@"InformationViewController"];
+            [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+                controller.centerController = infoViewCon;
+            }];
+            
             
             break;
         }
