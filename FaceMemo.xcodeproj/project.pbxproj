@@ -71,6 +71,8 @@
 		059B4E0117599F4A002B7972 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DE81758D4D6002B7972 /* CoreData.framework */; };
 		059B4E0217599F55002B7972 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */; };
 		059B4E071759B060002B7972 /* libCrittercism_v3_5_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4E061759B060002B7972 /* libCrittercism_v3_5_3.a */; };
+		059B4E0D1759CB46002B7972 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4E0C1759CB46002B7972 /* Icon.png */; };
+		059B4E0F1759CB53002B7972 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4E0E1759CB52002B7972 /* Icon@2x.png */; };
 		05AA7CE8174A25100034B054 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47150172C2D8800556FDC /* UIKit.framework */; };
 		05AA7CE9174A25100034B054 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47152172C2D8800556FDC /* Foundation.framework */; };
 		05AA7CEF174A25100034B054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA7CED174A25100034B054 /* InfoPlist.strings */; };
@@ -227,6 +229,8 @@
 		059B4E041759B060002B7972 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
 		059B4E051759B060002B7972 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
 		059B4E061759B060002B7972 /* libCrittercism_v3_5_3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v3_5_3.a; sourceTree = "<group>"; };
+		059B4E0C1759CB46002B7972 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		059B4E0E1759CB52002B7972 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		05AA7CE5174A25100034B054 /* FaceMemoUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMemoUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA7CEC174A25100034B054 /* FaceMemoUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceMemoUnitTests-Info.plist"; sourceTree = "<group>"; };
 		05AA7CEE174A25100034B054 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 		05CF527F174A64270006B9CC /* images */ = {
 			isa = PBXGroup;
 			children = (
+				059B4E0E1759CB52002B7972 /* Icon@2x.png */,
+				059B4E0C1759CB46002B7972 /* Icon.png */,
 				059B4DDB1758B15C002B7972 /* UserViewController */,
 				05C26097174CFBE40047C63E /* DetailViewController */,
 				05C26094174CF9DE0047C63E /* FriendsViewController */,
@@ -737,6 +743,8 @@
 				059B4DE41758B97A002B7972 /* received_top@2x.png in Resources */,
 				059B4DE51758B97A002B7972 /* received@2x.png in Resources */,
 				059B4DE71758C252002B7972 /* bt_pushed@2x.png in Resources */,
+				059B4E0D1759CB46002B7972 /* Icon.png in Resources */,
+				059B4E0F1759CB53002B7972 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

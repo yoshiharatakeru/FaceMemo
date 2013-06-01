@@ -87,6 +87,17 @@ IIViewDeckControllerDelegate
     
     //トラッキング
     self.trackedViewName = @"FriendsView";
+    
+    
+    //ログインが成功している場合は情報を取得
+    if (FBSession.activeSession.isOpen) {
+        //プロフィール情報の取得
+        [self populateUserDetails];
+        
+        //フレンド情報の取得
+        [self populateFriendsData];
+        
+    }
 
 }
 
@@ -102,14 +113,8 @@ IIViewDeckControllerDelegate
 
 -(void)viewDidAppear:(BOOL)animated{
     
-    if (FBSession.activeSession.isOpen) {
-        //プロフィール情報の取得
-        [self populateUserDetails];
-        
-        //フレンド情報の取得
-        [self populateFriendsData];
-        
-    }else{
+    //ログインできていない場合はログイン画面に移動
+    if (!FBSession.activeSession.isOpen){
         
         LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         loginCon.delegate = self;
