@@ -11,6 +11,7 @@
 #import "FriendsViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "GAI.h"
+#import "Crittercism.h"
 NSString *const SCSessionStateChangedNotification =
 @"com.facebook.Scrumptious:SCSessionStateChangedNotification";
 
@@ -20,6 +21,10 @@ NSString *const SCSessionStateChangedNotification =
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBProfilePictureView class];
+    
+    
+    //crittercism
+    [Crittercism enableWithAppID: @"51a9772b558d6a09fc000006"];
     
     //google analytics
     

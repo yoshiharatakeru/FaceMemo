@@ -81,14 +81,13 @@ IIViewDeckControllerDelegate
     _tableView.delegate = self;
     _serchField.delegate = self;
     
-
-    
     //モデル
     _friendManager = [FMFriendManager sharedManager];
     
     
     //トラッキング
     self.trackedViewName = @"FriendsView";
+
 }
 
 

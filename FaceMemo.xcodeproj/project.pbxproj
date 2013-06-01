@@ -70,6 +70,7 @@
 		059B4DF617599B09002B7972 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DF517599B09002B7972 /* libGoogleAnalytics_debug.a */; };
 		059B4E0117599F4A002B7972 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DE81758D4D6002B7972 /* CoreData.framework */; };
 		059B4E0217599F55002B7972 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */; };
+		059B4E071759B060002B7972 /* libCrittercism_v3_5_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4E061759B060002B7972 /* libCrittercism_v3_5_3.a */; };
 		05AA7CE8174A25100034B054 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47150172C2D8800556FDC /* UIKit.framework */; };
 		05AA7CE9174A25100034B054 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47152172C2D8800556FDC /* Foundation.framework */; };
 		05AA7CEF174A25100034B054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA7CED174A25100034B054 /* InfoPlist.strings */; };
@@ -223,6 +224,9 @@
 		059B4DF817599C70002B7972 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		059B4DFB17599CAD002B7972 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		059B4DFF17599E15002B7972 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		059B4E041759B060002B7972 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
+		059B4E051759B060002B7972 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
+		059B4E061759B060002B7972 /* libCrittercism_v3_5_3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v3_5_3.a; sourceTree = "<group>"; };
 		05AA7CE5174A25100034B054 /* FaceMemoUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMemoUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA7CEC174A25100034B054 /* FaceMemoUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceMemoUnitTests-Info.plist"; sourceTree = "<group>"; };
 		05AA7CEE174A25100034B054 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				059B4E0217599F55002B7972 /* SystemConfiguration.framework in Frameworks */,
+				05FB4BB7172CCB99006AEF79 /* QuartzCore.framework in Frameworks */,
 				059B4E0117599F4A002B7972 /* CoreData.framework in Frameworks */,
 				05FB4BDF172CFDD9006AEF79 /* libsqlite3.dylib in Frameworks */,
 				05FB4BDC172CFD91006AEF79 /* AdSupport.framework in Frameworks */,
@@ -294,12 +299,12 @@
 				05FB4BCC172CEBDF006AEF79 /* Accounts.framework in Frameworks */,
 				05FB4BC9172CEB7C006AEF79 /* Social.framework in Frameworks */,
 				05D47151172C2D8800556FDC /* UIKit.framework in Frameworks */,
-				05FB4BB7172CCB99006AEF79 /* QuartzCore.framework in Frameworks */,
 				05D47153172C2D8800556FDC /* Foundation.framework in Frameworks */,
 				05D47155172C2D8800556FDC /* CoreGraphics.framework in Frameworks */,
 				05FB4BD7172CFCD6006AEF79 /* FacebookSDK.framework in Frameworks */,
 				059B4DF31758D50C002B7972 /* libGoogleAnalytics.a in Frameworks */,
 				059B4DF617599B09002B7972 /* libGoogleAnalytics_debug.a in Frameworks */,
+				059B4E071759B060002B7972 /* libCrittercism_v3_5_3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +463,16 @@
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
+		059B4E031759B05F002B7972 /* CrittercismSDK */ = {
+			isa = PBXGroup;
+			children = (
+				059B4E041759B060002B7972 /* Crittercism.h */,
+				059B4E051759B060002B7972 /* CrittercismDelegate.h */,
+				059B4E061759B060002B7972 /* libCrittercism_v3_5_3.a */,
+			);
+			path = CrittercismSDK;
+			sourceTree = "<group>";
+		};
 		05AA7CEA174A25100034B054 /* FaceMemoUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +552,7 @@
 		05D47144172C2D8800556FDC = {
 			isa = PBXGroup;
 			children = (
+				059B4E031759B05F002B7972 /* CrittercismSDK */,
 				059B4DFF17599E15002B7972 /* CFNetwork.framework */,
 				059B4DFB17599CAD002B7972 /* MessageUI.framework */,
 				059B4DF817599C70002B7972 /* libsqlite3.0.dylib */,
@@ -959,6 +975,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"\"$(SRCROOT)/CrittercismSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -978,6 +995,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"\"$(SRCROOT)/CrittercismSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
