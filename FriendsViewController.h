@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FMUser.h"
 #import "FMFriendManager.h"
+#import "GAITrackedViewController.h"
 
-@interface FriendsViewController : UIViewController
+
+@interface FriendsViewController : GAITrackedViewController
 @property(nonatomic,strong) FMUser *user;
 @property(nonatomic,strong) FMFriendManager *friendManager;
 @property (weak, nonatomic) IBOutlet UIButton *menu_bt;

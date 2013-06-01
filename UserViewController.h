@@ -13,12 +13,15 @@
 #import "FMConnector.h"
 #import "FMComment.h"
 #import "FMControllerManager.h"
+#import "GAITrackedViewController.h"
 
-@interface UserViewController : UIViewController
+
+@interface UserViewController : GAITrackedViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) FMCommentManager *commentManager;
 @property (nonatomic, strong) FMUser *user;
+@property (nonatomic,strong) MBProgressHUD *HUD;
 
 
 @end

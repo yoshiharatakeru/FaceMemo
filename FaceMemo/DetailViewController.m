@@ -29,7 +29,8 @@
   FMCommentNetworkOperationDelegate,
   FMConnectorDelegate,
   MBProgressHUDDelegate,
-  UITextViewDelegate
+  UITextViewDelegate,
+  IIViewDeckControllerDelegate
 >
 
 @end
@@ -74,6 +75,9 @@
     [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     NSLog(@"DetailViewController:viewDidLoad");
+    
+    //トラッキング
+    self.trackedViewName = @"DetailView";
     
 }
 
@@ -173,7 +177,6 @@
 
 
 -(void)updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-    
     
     switch (indexPath.section) {
         
@@ -314,15 +317,23 @@ return height;
     NSLog(@"range.length:%d",range.length);
     NSLog(@"text.length:%d",text.length);
     NSLog(@"合計文字:%d",[textView.text length] + [text length] - range.length);
+    int sum = [textView.text length] + [text length] - range.length;
+    if (sum == 99) {
+        [AppDelegate showAlertWithTitle:nil message:@"メモは100文字までです"];
+        return NO;
+    }
     
+    /*
     //文字数制限
     if (range.location + range.length + [text length] <= TEXT_LIMIT_NUM) {
         if ([textView.text length] + [text length] - range.length <= TEXT_LIMIT_NUM) {
             return YES;
         }else{
+            [AppDelegate showAlertWithTitle:nil message:@"メモは100文字までです"];
             return NO;
         }
     }
+     */
     
     
 	return YES;
@@ -437,6 +448,9 @@ return height;
         UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
         [self updateCell:cell atIndexPath:indexPath];
     }
+    
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), @"");
 
     
 }
@@ -459,6 +473,9 @@ return height;
     
     _settingIndexPath = nil;
     
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), @"");
+    
     
     
 }
@@ -473,10 +490,14 @@ return height;
     _HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _HUD.labelText = @"Loading";
     
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), @"");
+    
 }
 
 
 - (IBAction)backBtPressed:(id)sender {
+    [self.view endEditing:YES];
     [self.viewDeckController closeRightView];
 
 }
@@ -487,6 +508,9 @@ return height;
     
     FMComment *comment = [_commentManager.comments objectAtIndex:sw.indexPath.row];
     comment.disp_flg = (sw.on)? @"true":@"false";
+    
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), comment.disp_flg);
     
 }
 
@@ -551,6 +575,18 @@ return height;
     
 }
 
+//ローディング失敗
+- (void)connectorDidFailLoadingWithError:(id)sener{
+    
+    [_HUD hide:YES];
+    NSString *title = @"通信エラー";
+    NSString *message = @"通信に失敗しました";
+    [AppDelegate showAlertWithTitle:title message:message];
+    
+    
+}
+
+
 //ダウンロード完了
 - (void)connector:(FMConnector *)connector didFinishDownLoading:(NSArray*)responseData{
     
@@ -574,7 +610,7 @@ return height;
             NSLog(@"test:num:%d",num);
             NSLog(@"comments:%d",_commentManager.comments.count);
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:2];
-            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+            [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
             
         });
     }
@@ -590,6 +626,7 @@ return height;
 }
 
 
+
 //アップデート完了
 - (void)connectorDidFinishUpdating:(id)sender{
     _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
@@ -603,11 +640,14 @@ return height;
     
 }
 
+#pragma mark -
+#pragma mark viewDeckControllerDelegate
 
-//失敗
-- (void)connectorDidFailLoadingWithError:(id)sener{
-    NSLog(@"エラー");
+-(void)viewDeckController:(IIViewDeckController *)viewDeckController applyShadow:(CALayer *)shadowLayer withBounds:(CGRect)rect{
+    
+    
 }
+
 
 
 @end

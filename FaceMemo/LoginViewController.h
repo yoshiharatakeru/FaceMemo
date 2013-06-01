@@ -8,9 +8,10 @@
 
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 @protocol LoginViewControllerDelegate;
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : GAITrackedViewController   
 @property(nonatomic,weak) id delegate;
 
 @end

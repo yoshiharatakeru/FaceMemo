@@ -16,6 +16,9 @@
 		050CE6A9174E4CA7002FB9BB /* table@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE6A8174E4CA7002FB9BB /* table@2x.png */; };
 		050CE6AB174E4DB8002FB9BB /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 050CE6AA174E4DB8002FB9BB /* menu@2x.png */; };
 		052A3DAE1754A25C0064B176 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A3DAD1754A25C0064B176 /* FeedbackViewController.m */; };
+		052A3DB11754BE500064B176 /* FMFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A3DB01754BE500064B176 /* FMFeedback.m */; };
+		052A3DB41754C0B50064B176 /* FMFeedbackNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A3DB31754C0B50064B176 /* FMFeedbackNetworkOperation.m */; };
+		052A3DB61754D6BB0064B176 /* login_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052A3DB51754D6BB0064B176 /* login_bt@2x.png */; };
 		053FE4EA17450A41003BAAD7 /* FMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 053FE4E917450A41003BAAD7 /* FMButton.m */; };
 		05436527173A506400A2D82F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543650F173A506400A2D82F /* NSObject+SBJson.m */; };
 		05436528173A506400A2D82F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05436512173A506400A2D82F /* SBJsonParser.m */; };
@@ -59,6 +62,14 @@
 		0596ABF117477CC10020144B /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF017477CC10020144B /* LeftViewController.m */; };
 		0596ABF41747848E0020144B /* FMControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF31747848D0020144B /* FMControllerManager.m */; };
 		0596ABF7174794340020144B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF6174794340020144B /* UserViewController.m */; };
+		059B4DE01758B46B002B7972 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DDE1758B46B002B7972 /* back@2x.png */; };
+		059B4DE41758B97A002B7972 /* received_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DE21758B97A002B7972 /* received_top@2x.png */; };
+		059B4DE51758B97A002B7972 /* received@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DE31758B97A002B7972 /* received@2x.png */; };
+		059B4DE71758C252002B7972 /* bt_pushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DE61758C252002B7972 /* bt_pushed@2x.png */; };
+		059B4DF31758D50C002B7972 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DF21758D50C002B7972 /* libGoogleAnalytics.a */; };
+		059B4DF617599B09002B7972 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DF517599B09002B7972 /* libGoogleAnalytics_debug.a */; };
+		059B4E0117599F4A002B7972 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DE81758D4D6002B7972 /* CoreData.framework */; };
+		059B4E0217599F55002B7972 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */; };
 		05AA7CE8174A25100034B054 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47150172C2D8800556FDC /* UIKit.framework */; };
 		05AA7CE9174A25100034B054 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D47152172C2D8800556FDC /* Foundation.framework */; };
 		05AA7CEF174A25100034B054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA7CED174A25100034B054 /* InfoPlist.strings */; };
@@ -116,6 +127,11 @@
 		050CE6AA174E4DB8002FB9BB /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		052A3DAC1754A25C0064B176 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = ../../FeedbackViewController.h; sourceTree = "<group>"; };
 		052A3DAD1754A25C0064B176 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = ../../FeedbackViewController.m; sourceTree = "<group>"; };
+		052A3DAF1754BE500064B176 /* FMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMFeedback.h; path = ../Controller/FMFeedback.h; sourceTree = "<group>"; };
+		052A3DB01754BE500064B176 /* FMFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMFeedback.m; path = ../Controller/FMFeedback.m; sourceTree = "<group>"; };
+		052A3DB21754C0B50064B176 /* FMFeedbackNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMFeedbackNetworkOperation.h; path = ../../FMFeedbackNetworkOperation.h; sourceTree = "<group>"; };
+		052A3DB31754C0B50064B176 /* FMFeedbackNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMFeedbackNetworkOperation.m; path = ../../FMFeedbackNetworkOperation.m; sourceTree = "<group>"; };
+		052A3DB51754D6BB0064B176 /* login_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bt@2x.png"; sourceTree = "<group>"; };
 		053FE4E817450A41003BAAD7 /* FMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMButton.h; path = ../../FMButton.h; sourceTree = "<group>"; };
 		053FE4E917450A41003BAAD7 /* FMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMButton.m; path = ../../FMButton.m; sourceTree = "<group>"; };
 		0543650E173A506400A2D82F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -191,6 +207,22 @@
 		0596ABF31747848D0020144B /* FMControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMControllerManager.m; path = ../../FMControllerManager.m; sourceTree = "<group>"; };
 		0596ABF5174794340020144B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = ../../UserViewController.h; sourceTree = "<group>"; };
 		0596ABF6174794340020144B /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = ../../UserViewController.m; sourceTree = "<group>"; };
+		059B4DDE1758B46B002B7972 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		059B4DE21758B97A002B7972 /* received_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "received_top@2x.png"; sourceTree = "<group>"; };
+		059B4DE31758B97A002B7972 /* received@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "received@2x.png"; sourceTree = "<group>"; };
+		059B4DE61758C252002B7972 /* bt_pushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_pushed@2x.png"; sourceTree = "<group>"; };
+		059B4DE81758D4D6002B7972 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		059B4DED1758D50C002B7972 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		059B4DEE1758D50C002B7972 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		059B4DEF1758D50C002B7972 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		059B4DF01758D50C002B7972 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		059B4DF11758D50C002B7972 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		059B4DF21758D50C002B7972 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		059B4DF517599B09002B7972 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
+		059B4DF817599C70002B7972 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		059B4DFB17599CAD002B7972 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		059B4DFF17599E15002B7972 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		05AA7CE5174A25100034B054 /* FaceMemoUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMemoUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA7CEC174A25100034B054 /* FaceMemoUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceMemoUnitTests-Info.plist"; sourceTree = "<group>"; };
 		05AA7CEE174A25100034B054 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -254,6 +286,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059B4E0217599F55002B7972 /* SystemConfiguration.framework in Frameworks */,
+				059B4E0117599F4A002B7972 /* CoreData.framework in Frameworks */,
 				05FB4BDF172CFDD9006AEF79 /* libsqlite3.dylib in Frameworks */,
 				05FB4BDC172CFD91006AEF79 /* AdSupport.framework in Frameworks */,
 				05FB4BDD172CFD91006AEF79 /* Security.framework in Frameworks */,
@@ -264,6 +298,8 @@
 				05D47153172C2D8800556FDC /* Foundation.framework in Frameworks */,
 				05D47155172C2D8800556FDC /* CoreGraphics.framework in Frameworks */,
 				05FB4BD7172CFCD6006AEF79 /* FacebookSDK.framework in Frameworks */,
+				059B4DF31758D50C002B7972 /* libGoogleAnalytics.a in Frameworks */,
+				059B4DF617599B09002B7972 /* libGoogleAnalytics_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +358,8 @@
 		056E42D6173E35A300534D8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				052A3DAF1754BE500064B176 /* FMFeedback.h */,
+				052A3DB01754BE500064B176 /* FMFeedback.m */,
 				056E42E7173E36CB00534D8B /* FMUser.h */,
 				056E42E8173E36CB00534D8B /* FMUser.m */,
 				056E42E1173E36A600534D8B /* FMFriend.h */,
@@ -374,6 +412,8 @@
 		056E432317411E0000534D8B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				052A3DB21754C0B50064B176 /* FMFeedbackNetworkOperation.h */,
+				052A3DB31754C0B50064B176 /* FMFeedbackNetworkOperation.m */,
 				055CFAD3174257F600145C10 /* FMCommentNetworkOperation.h */,
 				055CFAD4174257F600145C10 /* FMCommentNetworkOperation.m */,
 				056E432417411F0D00534D8B /* FMConnector.h */,
@@ -392,6 +432,30 @@
 				0595578C1752F931005A84F8 /* CommentSettingView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		059B4DDB1758B15C002B7972 /* UserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				059B4DE21758B97A002B7972 /* received_top@2x.png */,
+				059B4DE31758B97A002B7972 /* received@2x.png */,
+				059B4DDE1758B46B002B7972 /* back@2x.png */,
+			);
+			path = UserViewController;
+			sourceTree = "<group>";
+		};
+		059B4DEC1758D50C002B7972 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				059B4DED1758D50C002B7972 /* GAI.h */,
+				059B4DEE1758D50C002B7972 /* GAITrackedViewController.h */,
+				059B4DEF1758D50C002B7972 /* GAITracker.h */,
+				059B4DF01758D50C002B7972 /* GAITransaction.h */,
+				059B4DF517599B09002B7972 /* libGoogleAnalytics_debug.a */,
+				059B4DF11758D50C002B7972 /* GAITransactionItem.h */,
+				059B4DF21758D50C002B7972 /* libGoogleAnalytics.a */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		05AA7CEA174A25100034B054 /* FaceMemoUnitTests */ = {
@@ -417,6 +481,8 @@
 		05C26094174CF9DE0047C63E /* FriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				052A3DB51754D6BB0064B176 /* login_bt@2x.png */,
+				059B4DE61758C252002B7972 /* bt_pushed@2x.png */,
 				054CCFF817538E0E00221813 /* icon_friend@2x.png */,
 				054CCFF917538E0E00221813 /* icon_info@2x.png */,
 				054CCFFA17538E0E00221813 /* icon_logout@2x.png */,
@@ -459,6 +525,7 @@
 		05CF527F174A64270006B9CC /* images */ = {
 			isa = PBXGroup;
 			children = (
+				059B4DDB1758B15C002B7972 /* UserViewController */,
 				05C26097174CFBE40047C63E /* DetailViewController */,
 				05C26094174CF9DE0047C63E /* FriendsViewController */,
 				05CF5280174A64380006B9CC /* 37x-Checkmark.png */,
@@ -470,6 +537,12 @@
 		05D47144172C2D8800556FDC = {
 			isa = PBXGroup;
 			children = (
+				059B4DFF17599E15002B7972 /* CFNetwork.framework */,
+				059B4DFB17599CAD002B7972 /* MessageUI.framework */,
+				059B4DF817599C70002B7972 /* libsqlite3.0.dylib */,
+				059B4DEC1758D50C002B7972 /* GoogleAnalytics */,
+				059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */,
+				059B4DE81758D4D6002B7972 /* CoreData.framework */,
 				05CF527F174A64270006B9CC /* images */,
 				05CF527B174A49CC0006B9CC /* MBProgressHUD */,
 				05AA7CF7174A25330034B054 /* SenTestingKit.framework */,
@@ -643,6 +716,11 @@
 				054CCFFD17538E0E00221813 /* icon_info@2x.png in Resources */,
 				054CCFFE17538E0E00221813 /* icon_logout@2x.png in Resources */,
 				054CCFFF17538E0E00221813 /* icon_user@2x.png in Resources */,
+				052A3DB61754D6BB0064B176 /* login_bt@2x.png in Resources */,
+				059B4DE01758B46B002B7972 /* back@2x.png in Resources */,
+				059B4DE41758B97A002B7972 /* received_top@2x.png in Resources */,
+				059B4DE51758B97A002B7972 /* received@2x.png in Resources */,
+				059B4DE71758C252002B7972 /* bt_pushed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +797,8 @@
 				054CD002175493BA00221813 /* InformationViewController.m in Sources */,
 				054CD0051754957C00221813 /* LicenceViewController.m in Sources */,
 				052A3DAE1754A25C0064B176 /* FeedbackViewController.m in Sources */,
+				052A3DB11754BE500064B176 /* FMFeedback.m in Sources */,
+				052A3DB41754C0B50064B176 /* FMFeedbackNetworkOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +851,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceMemoUnitTests/FaceMemoUnitTests-Prefix.pch";
 				INFOPLIST_FILE = "FaceMemoUnitTests/FaceMemoUnitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER) ";
 				WRAPPER_EXTENSION = octest;
@@ -788,6 +876,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceMemoUnitTests/FaceMemoUnitTests-Prefix.pch";
 				INFOPLIST_FILE = "FaceMemoUnitTests/FaceMemoUnitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER) ";
 				WRAPPER_EXTENSION = octest;
@@ -860,6 +956,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceMemo/FaceMemo-Prefix.pch";
 				INFOPLIST_FILE = "FaceMemo/FaceMemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -875,6 +975,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceMemo/FaceMemo-Prefix.pch";
 				INFOPLIST_FILE = "FaceMemo/FaceMemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

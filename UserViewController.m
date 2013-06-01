@@ -10,11 +10,17 @@
 #import "LoginViewController.h"
 
 @interface UserViewController ()
-<UITableViewDataSource,UITableViewDelegate>
+<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
 
 @end
 
 @implementation UserViewController
+
+{
+    
+    __weak IBOutlet FBProfilePictureView *profileView;
+    __weak IBOutlet UILabel *lb_name;
+}
 
 
 - (void)viewDidLoad
@@ -36,6 +42,13 @@
     connector.delegate = self;
     [connector downloadComments];
     
+    _HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _HUD.labelText = @"Loading";
+    
+    
+    //トラッキング
+    self.trackedViewName = @"UserView";
+    
 }
 
 
@@ -52,6 +65,14 @@
     
     FMControllerManager *controllManager = [FMControllerManager sharedManager];
     [controllManager setUserViewController:self];
+    
+    //ユーザー情報
+     //写真
+     profileView.profileID = _user.id_facebook;
+     
+     //名前
+     lb_name.text = _user.name;
+     
     
 }
 
@@ -90,7 +111,14 @@
     }
     
     if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
+        
+        if (indexPath.row == 0) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
+        
+        }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+        }
+    
     }
 
 
@@ -104,13 +132,6 @@
 - (void)updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath{
     
     if (indexPath.section == 0) {
-        //写真
-        FBProfilePictureView *pv = (FBProfilePictureView*)[cell viewWithTag:1];
-        pv.profileID = _user.id_facebook;
-        
-        //名前
-        UILabel *lb = (UILabel*)[cell viewWithTag:2];
-        lb.text = _user.name;
  
     }
     
@@ -137,7 +158,11 @@
     }
     
     if (indexPath.section == 1) {
-        return 135;
+        if (indexPath.row == 0) {
+            return 158;
+        }else{
+            return 153;
+        }
     }
     
 
@@ -168,7 +193,6 @@
     
     NSLog(@"res:%@",responseData.description);
     
-    
     //コメントモデル追加
     for (NSDictionary *res in responseData) {
         FMComment *comment = FMComment.new;
@@ -181,6 +205,9 @@
         [comment setDisp_flg:disp_flg];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [_HUD hide:YES];
+            
             [_commentManager addComment:comment];
             NSInteger num  = [_commentManager.comments indexOfObject:comment];
             NSLog(@"test:num:%d",num);
@@ -195,16 +222,22 @@
 }
 
 
-//アップデート完了
-- (void)connectorDidFinishUpdating:(id)sender{
+//失敗
+- (void)connectorDidFailLoadingWithError:(id)sener{
     
-    NSLog(@"更新完了");
+    [_HUD hide:YES];
+    NSString *title = @"通信エラー";
+    NSString *message = @"通信に失敗しました";
+    [AppDelegate showAlertWithTitle:title message:message];
 }
 
 
-//失敗
-- (void)connectorDidFailLoadingWithError:(id)sener{
-    NSLog(@"エラー");
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[_HUD removeFromSuperview];
+	_HUD = nil;
 }
 
 @end

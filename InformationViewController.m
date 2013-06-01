@@ -8,6 +8,7 @@
 
 #import "InformationViewController.h"
 #import "LicenceViewController.h"
+#import "FeedbackViewController.h"
 
 
 @interface InformationViewController ()
@@ -39,7 +40,10 @@ UITableViewDelegate>
     [super viewDidLoad];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-	// Do any additional setup after loading the view.
+    
+    //トラッキング
+    self.trackedViewName = @"InformationView";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +105,15 @@ UITableViewDelegate>
         self.viewDeckController.rightSize = 0;
         [self.viewDeckController toggleRightViewAnimated:YES];
     }
+    
+    if (indexPath.row == 2) {
+        FeedbackViewController *feedBackViewCon = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackViewController"];
+        [self.viewDeckController setRightController:feedBackViewCon];
+        self.viewDeckController.rightSize = 0;
+        [self.viewDeckController toggleRightViewAnimated:YES];
+    }
+    
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)backBtPressed:(id)sender {

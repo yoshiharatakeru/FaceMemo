@@ -29,7 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _LoginBt.center = self.view.center;
     [_LoginBt addTarget:self action:@selector(performLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    //トラッキング
+    self.trackedViewName = @"LoginView"; 
 }
 
 - (void)didReceiveMemoryWarning

@@ -24,7 +24,8 @@ UITableViewDelegate,
 LoginViewControllerDelegate,
 UITextFieldDelegate,
 LeftViewControllerDelegate,
-UIScrollViewDelegate
+UIScrollViewDelegate,
+IIViewDeckControllerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profileImage;
@@ -33,6 +34,8 @@ UIScrollViewDelegate
 @property (strong, nonatomic) NSMutableArray *arrayFriends;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet MyTextField *serchField;
+@property (weak, nonatomic) IBOutlet UIImageView *blackView;
+@property (weak, nonatomic) IBOutlet UIImageView *tabbar;
 
 @end
 
@@ -82,6 +85,10 @@ UIScrollViewDelegate
     
     //モデル
     _friendManager = [FMFriendManager sharedManager];
+    
+    
+    //トラッキング
+    self.trackedViewName = @"FriendsView";
 }
 
 
@@ -104,7 +111,9 @@ UIScrollViewDelegate
         
     }
     
+    self.viewDeckController.delegate = self;
 }
+
 
 
 -(void)viewDidUnload{
@@ -151,10 +160,28 @@ UIScrollViewDelegate
     self.viewDeckController.leftSize = 160;
     [self.viewDeckController setLeftController:leftCon];
     [self.viewDeckController toggleLeftViewAnimated:YES];
+    _tableView.allowsSelection = NO;
 
 
 }
 
+
+
+- (void)cellTapped:(FMButton*)bt{
+    
+    [self.view endEditing:YES];
+    
+    //詳細画面
+    DetailViewController *detailCon = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    [self.viewDeckController setRightController:detailCon];
+    self.viewDeckController.rightSize = 0;
+    detailCon.friend = [_friendManager.friends objectAtIndex:bt.indexPath.row];
+    detailCon.user   = _user;
+    
+    [self.viewDeckController toggleRightView];
+    
+    
+}
 
 
 #pragma mark -
@@ -271,6 +298,13 @@ UIScrollViewDelegate
     //名前
     lb_name.text = friend.name;
     
+    
+    //ボタン
+    FMButton *bt = (FMButton*)[cell viewWithTag:4];
+    bt.indexPath = indexPath;
+    [bt addTarget:self action:@selector(cellTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     //写真
     picView.alpha = 0;
     [UIView animateWithDuration:0.5 animations:^{
@@ -281,21 +315,8 @@ UIScrollViewDelegate
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
-    
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.view endEditing:YES];
-    
-    //詳細画面
-    DetailViewController *detailCon = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    [self.viewDeckController setRightController:detailCon];
-    self.viewDeckController.rightSize = 0;
-    detailCon.friend = [_friendManager.friends objectAtIndex:indexPath.row];
-    detailCon.user   = _user;
-    
-    [self.viewDeckController toggleRightView];
-
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
 }
 
 
@@ -377,11 +398,38 @@ UIScrollViewDelegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     NSLog(@"編集開始");
+    
+    //フォーカス
+    [UIView animateWithDuration:0.2 animations:^{
+        _blackView.alpha = 0.4;
+        _tabbar.alpha = 0;
+    
+    }];
+    
+
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     NSLog(@"編集終了");
     
+    //フォーカス解除
+    [UIView animateWithDuration:0.2 animations:^{
+        _blackView.alpha  = 0;
+        _tabbar.alpha  = 1;
+    }];
+    
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), textField.text);
+    
 }
 
+
+#pragma mark -
+#pragma mark viewDeckControllerDelegate
+
+
+- (void)viewDeckController:(IIViewDeckController *)viewDeckController didShowCenterViewFromSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated{
+    
+    _tableView.allowsSelection = YES;
+}
 @end

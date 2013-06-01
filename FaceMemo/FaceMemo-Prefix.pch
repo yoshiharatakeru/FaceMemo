@@ -17,5 +17,12 @@
     #define BASE_URL @"http://testapp0421.herokuapp.com/"
     #import"MBProgressHUD.h"
     #import"AppDelegate.h"
+    #import"GAI.h"
+    #import"GAITracker.h"
+    #import "GAITrackedViewController.h"
+
+
+    //google analytics
+    #define GAI_TRACK_EVENT(CATEGORY,ACTION,LABEL) [[GAI sharedInstance].defaultTracker trackEventWithCategory:CATEGORY withAction:ACTION withLabel:LABEL withValue:[NSNumber numberWithInt:100]]; NSLog(@"category:%@",CATEGORY); NSLog(@"action:%@",ACTION); NSLog(@"label:%@",LABEL);
 
 #endif

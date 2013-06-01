@@ -12,8 +12,9 @@
 #import "FMUser.h"
 #import "FMConnector.h"
 #import "FMButton.h"
+#import "GAITrackedViewController.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : GAITrackedViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *
 tableView;

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMFeedback.h"
+#import "MBProgressHUD.h"
+#import "GAITrackedViewController.h"
 
-@interface FeedbackViewController : UIViewController
+
+@interface FeedbackViewController : GAITrackedViewController
+@property(nonatomic,strong) FMFeedback *feedback;
+@property(nonatomic,strong) NSOperationQueue *queue;
+@property(nonatomic,strong) MBProgressHUD *HUD;
 
 @end

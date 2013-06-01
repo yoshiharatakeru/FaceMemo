@@ -99,12 +99,18 @@ static FMConnector *_sharedInstance = nil;
         if (comment.identifier) {//更新
             op = [[FMCommentNetworkOperation alloc]initWithComment:comment action:@"update"];
             op.delegate = self;
+            
+            //トラッキング
+            GAI_TRACK_EVENT(@"FMConnector", @"update_comment", comment.comment);
 
             
        
         }else{//新規作成
             op = [[FMCommentNetworkOperation alloc]initWithComment:comment action:@"create"];
             op.delegate = self;
+            
+            //トラッキング
+            GAI_TRACK_EVENT(@"FMConnector", @"create_comment", comment.comment);
 
             
         }
@@ -124,9 +130,12 @@ static FMConnector *_sharedInstance = nil;
 
         [queue addOperation:op];
         [_retrieveCommentsOperations addObject:op];
+        
+        //トラッキング
+        GAI_TRACK_EVENT(@"FMConnector", @"delete_comment", comment.comment);
     
     }
-      
+    
     BOOL networkAccessing = _networkAccessing;
 
 }
@@ -136,21 +145,38 @@ static FMConnector *_sharedInstance = nil;
 #pragma mark -
 #pragma mark FMCommentNetworkOperationDelegate
 
-- (void)operation:(FMCommentNetworkOperation*)operation didReceiveResponse:(NSHTTPURLResponse*)response{
+- (void)operation:(FMCommentNetworkOperation*)operation didReceiveResponse:(NSHTTPURLResponse*)response
+{
     
     //エラー処理
+    NSLog(@"statuscode:%d",response.statusCode);
+    if (response.statusCode != 200 && response.statusCode != 201) {
+        [_delegate connectorDidFailLoadingWithError:self];
+    }
+    
     
 }
-- (void)operation:(FMCommentNetworkOperation*)operation didFailWithError:(NSError*)error{
-    
+
+
+- (void)operation:(FMCommentNetworkOperation*)operation didFailWithError:(NSError*)error
+{
     //エラー処理
+    NSLog(@"error:%@",error.localizedDescription);
     [_delegate connectorDidFailLoadingWithError:self];
     
-}
-- (void)operation:(FMCommentNetworkOperation*)operation didReceiveData:(NSData*)data{
+    //トラッキング
+    GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), error.localizedDescription);
     
+}
+
+
+- (void)operation:(FMCommentNetworkOperation*)operation didReceiveData:(NSData*)data
+{
+
     
 }
+
+
 - (void)operationDidFinishLoading:(FMCommentNetworkOperation*)operation{
     
     

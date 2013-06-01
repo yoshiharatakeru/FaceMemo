@@ -92,6 +92,11 @@ UIAlertViewDelegate
             break;
         }
         case 1:{
+            //途中
+            UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+            [cell.contentView addGestureRecognizer:pan];
+            
+            
             break;
         }
         case 2:{
@@ -188,5 +193,9 @@ UIAlertViewDelegate
 
 }
 
+
+- (void)tap:(UIPanGestureRecognizer*)ges{
+    NSLog(@"tap");
+}
 
 @end

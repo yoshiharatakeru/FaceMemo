@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "FriendsViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "GAI.h"
 NSString *const SCSessionStateChangedNotification =
 @"com.facebook.Scrumptious:SCSessionStateChangedNotification";
 
@@ -19,6 +20,19 @@ NSString *const SCSessionStateChangedNotification =
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBProfilePictureView class];
+    
+    //google analytics
+    
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    // Optional: set debug to YES for extra debugging information.
+    [GAI sharedInstance].debug = YES;
+    // Create tracker instance.
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-41355170-1"];
+    
+    
     return YES;
 }
 							
