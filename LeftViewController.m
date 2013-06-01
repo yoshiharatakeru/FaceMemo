@@ -187,9 +187,16 @@ UIAlertViewDelegate
 #pragma mark private method
 - (void)logout{
     
-    [self.viewDeckController closeLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success) {
-        [_delegate leftViewControllerDidPressLogout:self];
-    }];
+    //一度friendsviewに戻してログアウト
+    FMControllerManager *controllerManager = [FMControllerManager sharedManager];
+    if (controllerManager.friendViewController) {
+        [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+            controller.centerController = controllerManager.friendViewController;
+            [_delegate leftViewControllerDidPressLogout:self];
+            
+        }];
+    }
+
 
 }
 

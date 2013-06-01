@@ -61,7 +61,7 @@ IIViewDeckControllerDelegate
         [self openSession];
     } else {
         NSLog(@"ログイン記録無し");
-        [self showLoginView];
+        //[self showLoginView];
     }
     
     //facebookのセッションが変化した場合の通知要求を登録
@@ -91,9 +91,16 @@ IIViewDeckControllerDelegate
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+
+
+-(void)viewDidUnload{
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+}
+
+
+-(void)viewDidAppear:(BOOL)animated{
     
     if (FBSession.activeSession.isOpen) {
         //プロフィール情報の取得
@@ -103,7 +110,7 @@ IIViewDeckControllerDelegate
         [self populateFriendsData];
         
     }else{
-        NSLog(@"takeru");
+        
         LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         loginCon.delegate = self;
         [self presentViewController:loginCon animated:YES completion:nil];
@@ -111,16 +118,6 @@ IIViewDeckControllerDelegate
     }
     
     self.viewDeckController.delegate = self;
-}
-
-
-
--(void)viewDidUnload{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
--(void)viewDidAppear:(BOOL)animated{
     
 
 
@@ -225,8 +222,15 @@ IIViewDeckControllerDelegate
 
 //ログイン画面を開くメソッド
 -(void)showLoginView{
-    LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    loginCon.delegate = self;
+    
+    NSLog(@"FriendsViewCon:showLoginView");
+    //LoginViewController *loginCon = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    UIViewController *loginCon = [[UIViewController alloc]init];
+    loginCon.view.backgroundColor = [UIColor redColor];
+    loginCon.view.frame = self.view.frame;
+
+    //loginCon.delegate = self;
     [self presentViewController:loginCon animated:YES completion:nil];
     
 }

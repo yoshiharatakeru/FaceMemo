@@ -33,7 +33,9 @@
     [_LoginBt addTarget:self action:@selector(performLogin) forControlEvents:UIControlEventTouchUpInside];
     
     //トラッキング
-    self.trackedViewName = @"LoginView"; 
+    self.trackedViewName = @"LoginView";
+    
+    NSLog(@"LoginViewController:viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning
