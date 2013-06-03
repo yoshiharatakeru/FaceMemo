@@ -86,7 +86,7 @@
     }
     
     if ([_action isEqualToString:@"create"]) {
-        textStr = [NSString stringWithFormat:@"to_user=%@&from_user=%@&disp_flg=%@&comment=%@",_comment.to_user,_comment.from_user,_comment.disp_flg,_comment.comment];
+        textStr = [NSString stringWithFormat:@"to_user=%@&from_user=%@&disp_flg=%@&comment=%@&date=%@",_comment.to_user,_comment.from_user,_comment.disp_flg,_comment.comment,_comment.date];
     }
     
     NSLog(@"text:%@",textStr);

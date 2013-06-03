@@ -130,13 +130,16 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tab_brar@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="jwv-iV-6Ng">
                                         <color key="backgroundColor" cyan="0.217866104" magenta="0.1744126369" yellow="0.1353501369" black="3.0517578119999998e-05" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ABM-mM-WRa"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="jwv-iV-6Ng" firstAttribute="trailing" secondItem="7ls-2z-HE6" secondAttribute="trailing" type="default" id="Chg-UO-4od"/>
                                     <constraint firstItem="jwv-iV-6Ng" firstAttribute="top" secondItem="7ls-2z-HE6" secondAttribute="top" type="default" id="M2V-wR-BkJ"/>
-                                    <constraint firstItem="jwv-iV-6Ng" firstAttribute="bottom" secondItem="7ls-2z-HE6" secondAttribute="bottom" type="default" id="lmX-Ze-NLH"/>
+                                    <constraint firstAttribute="height" constant="44" type="user" id="oGi-kY-S4Q"/>
                                     <constraint firstItem="jwv-iV-6Ng" firstAttribute="leading" secondItem="7ls-2z-HE6" secondAttribute="leading" type="default" id="tXh-xT-kAZ"/>
                                 </constraints>
                             </view>
@@ -165,7 +168,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="search@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="6un-sk-ZdS">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="WOw-EY-DM6"/>
-                                    <constraint firstAttribute="height" constant="28" id="lxY-b2-Azb"/>
+                                    <constraint firstAttribute="height" constant="28" type="user" id="lxY-b2-Azb"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -174,13 +177,14 @@
                             <constraint firstItem="ev7-c3-XiW" firstAttribute="bottom" secondItem="2LT-u4-HfM" secondAttribute="bottom" type="default" id="0Eg-gu-eKo"/>
                             <constraint firstItem="LlX-Pz-eim" firstAttribute="leading" secondItem="2LT-u4-HfM" secondAttribute="leading" type="default" id="5T5-UM-ZzQ"/>
                             <constraint firstItem="LlX-Pz-eim" firstAttribute="top" secondItem="2LT-u4-HfM" secondAttribute="top" type="default" id="7ku-Sd-cad"/>
-                            <constraint firstItem="7ls-2z-HE6" firstAttribute="bottom" secondItem="LlX-Pz-eim" secondAttribute="bottom" type="default" id="Exs-c8-dMa"/>
                             <constraint firstItem="G4m-5s-WT7" firstAttribute="leading" secondItem="2LT-u4-HfM" secondAttribute="leading" type="default" id="HHV-xU-38S"/>
+                            <constraint firstItem="6un-sk-ZdS" firstAttribute="top" secondItem="2LT-u4-HfM" secondAttribute="top" constant="8" type="user" id="K2R-xx-ULd"/>
                             <constraint firstItem="G4m-5s-WT7" firstAttribute="trailing" secondItem="2LT-u4-HfM" secondAttribute="trailing" type="default" id="KbX-bd-tJ0"/>
                             <constraint firstItem="Dsu-IC-g34" firstAttribute="leading" secondItem="6un-sk-ZdS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="M2E-NL-K4p"/>
                             <constraint firstItem="G4m-5s-WT7" firstAttribute="bottom" secondItem="2LT-u4-HfM" secondAttribute="bottom" type="default" id="N0z-06-Rn2"/>
                             <constraint firstItem="G4m-5s-WT7" firstAttribute="top" secondItem="6un-sk-ZdS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Q7R-MF-wp0"/>
-                            <constraint firstItem="7ls-2z-HE6" firstAttribute="top" secondItem="2LT-u4-HfM" secondAttribute="top" type="default" id="RGc-Ip-91T"/>
+                            <constraint firstItem="7ls-2z-HE6" firstAttribute="top" secondItem="2LT-u4-HfM" secondAttribute="top" type="user" id="RGc-Ip-91T"/>
+                            <constraint firstItem="7ls-2z-HE6" firstAttribute="centerY" secondItem="6un-sk-ZdS" secondAttribute="centerY" type="user" id="Yll-19-9bZ"/>
                             <constraint firstItem="6un-sk-ZdS" firstAttribute="leading" secondItem="2LT-u4-HfM" secondAttribute="leading" constant="52" id="Zjc-bo-VhA"/>
                             <constraint firstItem="7ls-2z-HE6" firstAttribute="trailing" secondItem="2LT-u4-HfM" secondAttribute="trailing" type="default" id="bIQ-hq-RrH"/>
                             <constraint firstItem="7ls-2z-HE6" firstAttribute="leading" secondItem="2LT-u4-HfM" secondAttribute="leading" type="default" id="cvI-xc-4fC"/>
@@ -188,7 +192,6 @@
                             <constraint firstItem="ev7-c3-XiW" firstAttribute="leading" secondItem="2LT-u4-HfM" secondAttribute="leading" type="default" id="hV4-tR-Kx9"/>
                             <constraint firstItem="Dsu-IC-g34" firstAttribute="top" secondItem="2LT-u4-HfM" secondAttribute="top" type="default" id="kWy-gw-oap"/>
                             <constraint firstItem="ev7-c3-XiW" firstAttribute="trailing" secondItem="2LT-u4-HfM" secondAttribute="trailing" type="default" id="shs-b5-hR2"/>
-                            <constraint firstItem="6un-sk-ZdS" firstAttribute="centerY" secondItem="LlX-Pz-eim" secondAttribute="centerY" type="default" id="wyp-FH-u44"/>
                             <constraint firstItem="LlX-Pz-eim" firstAttribute="bottom" secondItem="Dsu-IC-g34" secondAttribute="bottom" type="default" id="yUs-Hq-iMx"/>
                         </constraints>
                     </view>
@@ -435,7 +438,6 @@
                         <constraints>
                             <constraint firstItem="kWL-Jp-am2" firstAttribute="trailing" secondItem="9uf-X5-pdt" secondAttribute="trailing" type="default" id="0em-X6-KgY"/>
                             <constraint firstItem="ydA-Ks-sUD" firstAttribute="leading" secondItem="9uf-X5-pdt" secondAttribute="leading" type="default" id="85G-sx-GfR"/>
-                            <constraint firstItem="ydA-Ks-sUD" firstAttribute="bottom" secondItem="9uf-X5-pdt" secondAttribute="bottom" type="user" id="EaH-WR-bLa"/>
                             <constraint firstItem="OLK-EC-4aM" firstAttribute="top" secondItem="9uf-X5-pdt" secondAttribute="top" type="default" id="GeC-CX-4mz"/>
                             <constraint firstItem="OLK-EC-4aM" firstAttribute="leading" secondItem="9uf-X5-pdt" secondAttribute="leading" type="default" id="Qlo-9z-gEA"/>
                             <constraint firstItem="kWL-Jp-am2" firstAttribute="top" secondItem="9uf-X5-pdt" secondAttribute="top" type="default" id="Xvo-LO-e8N"/>
@@ -577,7 +579,6 @@
                             <constraint firstItem="2f1-jz-JKq" firstAttribute="trailing" secondItem="Egp-FB-Xdz" secondAttribute="trailing" type="default" id="Lhb-L4-8hT"/>
                             <constraint firstItem="2f1-jz-JKq" firstAttribute="leading" secondItem="Egp-FB-Xdz" secondAttribute="leading" type="default" id="ZOc-UD-i3l"/>
                             <constraint firstItem="Roy-Zh-s2e" firstAttribute="leading" secondItem="Egp-FB-Xdz" secondAttribute="leading" type="default" id="ezx-nA-d9U"/>
-                            <constraint firstItem="2f1-jz-JKq" firstAttribute="bottom" secondItem="Egp-FB-Xdz" secondAttribute="bottom" type="user" id="gbl-sb-fms"/>
                             <constraint firstItem="iwY-cY-nKN" firstAttribute="trailing" secondItem="Egp-FB-Xdz" secondAttribute="trailing" type="default" id="hxu-X6-SMd"/>
                             <constraint firstItem="xTS-E4-NUE" firstAttribute="bottom" secondItem="Egp-FB-Xdz" secondAttribute="bottom" type="default" id="twN-U7-bfy"/>
                             <constraint firstItem="xTS-E4-NUE" firstAttribute="leading" secondItem="Egp-FB-Xdz" secondAttribute="leading" type="default" id="vns-Q9-bH3"/>
@@ -728,7 +729,6 @@ THE SOFTWARE.</string>
                             <constraint firstItem="PqO-sp-lUx" firstAttribute="leading" secondItem="dZw-rX-SYd" secondAttribute="leading" type="default" id="5zT-JO-SJo"/>
                             <constraint firstItem="PqO-sp-lUx" firstAttribute="trailing" secondItem="dZw-rX-SYd" secondAttribute="trailing" type="default" id="6Lf-DK-zkw"/>
                             <constraint firstItem="PqO-sp-lUx" firstAttribute="top" secondItem="dZw-rX-SYd" secondAttribute="top" type="default" id="7aG-fC-TgH"/>
-                            <constraint firstItem="4Yg-Xf-0Qp" firstAttribute="bottom" secondItem="dZw-rX-SYd" secondAttribute="bottom" type="user" id="FFW-OP-KU0"/>
                             <constraint firstItem="4Yg-Xf-0Qp" firstAttribute="leading" secondItem="dZw-rX-SYd" secondAttribute="leading" type="default" id="Knq-mG-yXt"/>
                             <constraint firstItem="TCR-rs-36e" firstAttribute="top" secondItem="dZw-rX-SYd" secondAttribute="top" type="default" id="N5R-wY-Re7"/>
                             <constraint firstItem="4Yg-Xf-0Qp" firstAttribute="top" secondItem="dZw-rX-SYd" secondAttribute="top" constant="44" type="user" id="XBe-sn-z3y"/>
@@ -873,12 +873,12 @@ THE SOFTWARE.</string>
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Publicate anonymously" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBC-Ca-zCf">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBC-Ca-zCf">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="QQM-KW-aBz"/>
-                                                                <constraint firstAttribute="width" constant="175" id="Z8H-4C-XEo"/>
+                                                                <constraint firstAttribute="width" constant="100" id="Zai-8a-aU6"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <color key="textColor" cyan="0.0" magenta="0.0" yellow="0.0" black="0.5" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -886,14 +886,14 @@ THE SOFTWARE.</string>
                                                     <color key="backgroundColor" white="0.050000000000000003" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="fQA-nZ-y6n" firstAttribute="top" secondItem="NNC-nx-XmH" secondAttribute="top" type="default" id="5IY-88-tC8"/>
-                                                        <constraint firstItem="aBC-Ca-zCf" firstAttribute="top" secondItem="NNC-nx-XmH" secondAttribute="top" constant="9" id="5Rm-4e-Xb2"/>
-                                                        <constraint firstItem="jGE-Vg-gMc" firstAttribute="top" secondItem="NNC-nx-XmH" secondAttribute="top" constant="36" id="CTz-4Q-8wh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jGE-Vg-gMc" secondAttribute="trailing" constant="18" id="EoM-dT-oVI"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aBC-Ca-zCf" secondAttribute="trailing" constant="13" id="FLS-eN-9kG"/>
+                                                        <constraint firstItem="jGE-Vg-gMc" firstAttribute="top" secondItem="NNC-nx-XmH" secondAttribute="top" constant="36" id="IrV-qj-Mi0"/>
                                                         <constraint firstItem="fQA-nZ-y6n" firstAttribute="leading" secondItem="NNC-nx-XmH" secondAttribute="leading" type="default" id="OWH-2g-yzq"/>
-                                                        <constraint firstAttribute="trailing" secondItem="jGE-Vg-gMc" secondAttribute="trailing" constant="18" id="c7h-qM-WiK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="HzU-wk-X9s" secondAttribute="trailing" constant="19" id="Toy-NE-OUq"/>
                                                         <constraint firstItem="fQA-nZ-y6n" firstAttribute="trailing" secondItem="NNC-nx-XmH" secondAttribute="trailing" type="default" id="f72-Rf-ZQg"/>
-                                                        <constraint firstItem="aBC-Ca-zCf" firstAttribute="leading" secondItem="NNC-nx-XmH" secondAttribute="leading" constant="156" id="lMd-2W-wNJ"/>
                                                         <constraint firstItem="fQA-nZ-y6n" firstAttribute="bottom" secondItem="NNC-nx-XmH" secondAttribute="bottom" type="default" id="nFb-oX-hwu"/>
-                                                        <constraint firstAttribute="trailing" secondItem="HzU-wk-X9s" secondAttribute="trailing" constant="19" id="naX-gs-bM4"/>
+                                                        <constraint firstItem="aBC-Ca-zCf" firstAttribute="top" secondItem="NNC-nx-XmH" secondAttribute="top" constant="9" id="udg-GM-95p"/>
                                                         <constraint firstAttribute="bottom" secondItem="HzU-wk-X9s" secondAttribute="bottom" constant="21" id="zAt-ED-4LZ"/>
                                                     </constraints>
                                                 </view>
@@ -954,11 +954,11 @@ THE SOFTWARE.</string>
                                         <color key="backgroundColor" cyan="0.41999999999999998" magenta="0.0" yellow="1" black="0.040000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="NNC-nx-XmH" firstAttribute="trailing" secondItem="BO5-9e-iML" secondAttribute="trailing" type="default" id="0Lw-iU-Azf"/>
-                                            <constraint firstItem="Nbo-bK-CvH" firstAttribute="leading" secondItem="BO5-9e-iML" secondAttribute="leading" type="default" id="H5V-Ib-3Le"/>
+                                            <constraint firstItem="Nbo-bK-CvH" firstAttribute="leading" secondItem="BO5-9e-iML" secondAttribute="leading" type="default" id="F61-Dg-oEN"/>
                                             <constraint firstItem="Nbo-bK-CvH" firstAttribute="bottom" secondItem="BO5-9e-iML" secondAttribute="bottom" type="default" id="MOj-j2-Ss7"/>
                                             <constraint firstItem="NNC-nx-XmH" firstAttribute="leading" secondItem="BO5-9e-iML" secondAttribute="leading" type="default" id="Skh-Rk-qsO"/>
-                                            <constraint firstItem="Nbo-bK-CvH" firstAttribute="trailing" secondItem="BO5-9e-iML" secondAttribute="trailing" type="default" id="VI5-o9-dw0"/>
                                             <constraint firstItem="NNC-nx-XmH" firstAttribute="bottom" secondItem="BO5-9e-iML" secondAttribute="bottom" type="default" id="XdI-YR-Wqw"/>
+                                            <constraint firstItem="Nbo-bK-CvH" firstAttribute="trailing" secondItem="BO5-9e-iML" secondAttribute="trailing" type="default" id="ai1-YK-ZxV"/>
                                             <constraint firstItem="NNC-nx-XmH" firstAttribute="top" secondItem="BO5-9e-iML" secondAttribute="top" type="default" id="ksl-4Q-mfP"/>
                                             <constraint firstItem="Nbo-bK-CvH" firstAttribute="top" secondItem="BO5-9e-iML" secondAttribute="top" type="default" id="o3j-87-4fy"/>
                                         </constraints>
@@ -1004,7 +1004,6 @@ THE SOFTWARE.</string>
                         <constraints>
                             <constraint firstItem="KIx-jZ-DOj" firstAttribute="bottom" secondItem="WjE-Cm-tty" secondAttribute="bottom" type="default" id="0JC-O7-6NR"/>
                             <constraint firstItem="PJJ-G9-fEs" firstAttribute="leading" secondItem="qNp-7N-nld" secondAttribute="leading" type="default" id="4Pu-uA-IsJ"/>
-                            <constraint firstItem="0hO-8t-qn1" firstAttribute="bottom" secondItem="qNp-7N-nld" secondAttribute="bottom" type="user" id="5vD-BR-esq"/>
                             <constraint firstItem="PJJ-G9-fEs" firstAttribute="trailing" secondItem="qNp-7N-nld" secondAttribute="trailing" type="default" id="97a-9G-c5X"/>
                             <constraint firstItem="RKm-We-FeQ" firstAttribute="top" secondItem="qNp-7N-nld" secondAttribute="top" type="default" id="9iP-Vl-2du"/>
                             <constraint firstItem="0hO-8t-qn1" firstAttribute="top" secondItem="PJJ-G9-fEs" secondAttribute="top" type="user" id="CGJ-9a-k8N"/>
@@ -1045,6 +1044,11 @@ THE SOFTWARE.</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="back@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZBK-Qa-RKO">
                                 <color key="backgroundColor" cyan="0.77000000000000002" magenta="0.70999999999999996" yellow="0.60999999999999999" black="0.11" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="nomemos@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="8QR-YT-pQv">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="fDG-mb-5ph"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CK6-5o-d3J">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iml-w1-gsS">
@@ -1080,6 +1084,9 @@ THE SOFTWARE.</string>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1kC-hX-Lo6">
                                 <color key="backgroundColor" white="0.050000000000000003" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="504" type="user" id="1od-CI-rIh"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell0" rowHeight="135" id="Pr3-Eb-SVk">
                                         <rect key="frame" x="0.0" y="22" width="320" height="135"/>
@@ -1111,7 +1118,7 @@ THE SOFTWARE.</string>
                                                     <color key="textColor" cyan="0.0" magenta="0.0" yellow="0.0" black="0.59143518520000005" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="RYQ-1e-SEo" customClass="FMTextView">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="RYQ-1e-SEo" customClass="FMTextView">
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="102" id="UAv-DS-YM8"/>
@@ -1151,7 +1158,7 @@ THE SOFTWARE.</string>
                                                     <color key="textColor" cyan="0.0" magenta="0.0" yellow="0.0" black="0.59143518520000005" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="eI9-gb-08o" customClass="FMTextView">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="eI9-gb-08o" customClass="FMTextView">
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="QWB-8A-HLF"/>
@@ -1201,26 +1208,29 @@ THE SOFTWARE.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CK6-5o-d3J" firstAttribute="top" secondItem="ZBK-Qa-RKO" secondAttribute="top" type="default" id="1g8-Sx-ox5"/>
                             <constraint firstItem="ZBK-Qa-RKO" firstAttribute="trailing" secondItem="xTW-Yd-ggk" secondAttribute="trailing" type="default" id="2Zc-oS-OzS"/>
                             <constraint firstItem="nvf-Mw-RUW" firstAttribute="trailing" secondItem="xTW-Yd-ggk" secondAttribute="trailing" type="default" id="3Pi-Wf-h6a"/>
+                            <constraint firstItem="ZBK-Qa-RKO" firstAttribute="top" secondItem="CK6-5o-d3J" secondAttribute="top" type="default" id="8r5-qV-Or1"/>
+                            <constraint firstItem="1kC-hX-Lo6" firstAttribute="top" secondItem="CK6-5o-d3J" secondAttribute="top" type="user" id="A7d-Qy-UNt"/>
+                            <constraint firstItem="8QR-YT-pQv" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" constant="179" id="COf-L1-mfJ"/>
                             <constraint firstItem="1kC-hX-Lo6" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="FIk-kZ-zMj"/>
+                            <constraint firstItem="8QR-YT-pQv" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="IYx-0a-t1J"/>
                             <constraint firstItem="nvf-Mw-RUW" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="Jko-kS-qQR"/>
                             <constraint firstItem="1kC-hX-Lo6" firstAttribute="trailing" secondItem="xTW-Yd-ggk" secondAttribute="trailing" type="default" id="Lhw-mb-gDL"/>
                             <constraint firstItem="nvf-Mw-RUW" firstAttribute="bottom" secondItem="n0G-ke-fzG" secondAttribute="bottom" type="default" id="OH4-oF-hCT"/>
-                            <constraint firstItem="1kC-hX-Lo6" firstAttribute="bottom" secondItem="xTW-Yd-ggk" secondAttribute="bottom" type="default" id="PmZ-Is-xKt"/>
-                            <constraint firstItem="ZBK-Qa-RKO" firstAttribute="top" secondItem="1kC-hX-Lo6" secondAttribute="top" type="default" id="Tha-oj-v1C"/>
+                            <constraint firstItem="8QR-YT-pQv" firstAttribute="trailing" secondItem="xTW-Yd-ggk" secondAttribute="trailing" type="default" id="gTN-v3-O1A"/>
                             <constraint firstItem="CK6-5o-d3J" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="gTR-wp-0Xn"/>
                             <constraint firstItem="ZBK-Qa-RKO" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="iOf-pt-iQI"/>
                             <constraint firstItem="CK6-5o-d3J" firstAttribute="trailing" secondItem="xTW-Yd-ggk" secondAttribute="trailing" type="default" id="jJC-Z9-MTs"/>
+                            <constraint firstItem="CK6-5o-d3J" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" constant="44" type="user" id="kgY-0a-puH"/>
                             <constraint firstItem="ZBK-Qa-RKO" firstAttribute="bottom" secondItem="xTW-Yd-ggk" secondAttribute="bottom" type="default" id="oHS-sn-HbX"/>
-                            <constraint firstItem="CK6-5o-d3J" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" constant="44" id="pa9-42-R83"/>
                             <constraint firstItem="nvf-Mw-RUW" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" type="default" id="qVF-Ig-mxR"/>
                             <constraint firstItem="n0G-ke-fzG" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" type="default" id="tsB-QP-Way"/>
                             <constraint firstItem="n0G-ke-fzG" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="yt6-SR-Ioz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="_message" destination="8QR-YT-pQv" id="XBD-At-dFz"/>
                         <outlet property="lb_name" destination="AWO-Zg-6hE" id="IWe-GO-AAh"/>
                         <outlet property="profileView" destination="ZWv-xh-ooh" id="3u8-zv-W5z"/>
                         <outlet property="tableView" destination="1kC-hX-Lo6" id="gtC-8B-pli"/>
@@ -1260,6 +1270,7 @@ THE SOFTWARE.</string>
         <image name="icon_user@2x.png" width="89" height="89"/>
         <image name="login_bt@2x.png" width="551" height="107"/>
         <image name="menu@2x.png" width="99" height="89"/>
+        <image name="nomemos@2x.png" width="640" height="236"/>
         <image name="off_image@2x.png" width="165" height="65"/>
         <image name="profile@2x.png" width="640" height="245"/>
         <image name="received@2x.png" width="641" height="307"/>
@@ -1274,11 +1285,9 @@ THE SOFTWARE.</string>
         <class className="BaseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseViewController.h"/>
         </class>
-        <class className="DetailViewController" superclassName="UIViewController">
+        <class className="DetailViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backBtPressed:"/>
-                <relationship kind="action" name="savePressed:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1291,13 +1300,13 @@ THE SOFTWARE.</string>
         <class className="FMTextView" superclassName="UITextView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FMTextView.h"/>
         </class>
-        <class className="FeedbackViewController" superclassName="UIViewController">
+        <class className="FeedbackViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_textView" candidateClass="UITextView"/>
             </relationships>
         </class>
-        <class className="FriendsViewController" superclassName="UIViewController">
+        <class className="FriendsViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendsViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="blackView" candidateClass="UIImageView"/>
@@ -1310,7 +1319,10 @@ THE SOFTWARE.</string>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="InformationViewController" superclassName="UIViewController">
+        <class className="GAITrackedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GAITrackedViewController.h"/>
+        </class>
+        <class className="InformationViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InformationViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_tableView" candidateClass="UITableView"/>
@@ -1325,7 +1337,7 @@ THE SOFTWARE.</string>
         <class className="LicenceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LicenceViewController.h"/>
         </class>
-        <class className="LoginViewController" superclassName="UIViewController">
+        <class className="LoginViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="LoginBt" candidateClass="UIButton"/>
@@ -1337,7 +1349,7 @@ THE SOFTWARE.</string>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="UserViewController" superclassName="UIViewController">
+        <class className="UserViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>

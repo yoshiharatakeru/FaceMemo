@@ -16,5 +16,6 @@
 +(FMFriendManager*)sharedManager;
 -(void)initFriends;
 -(void)addFriend:(FMFriend*)friend;
+-(void)sortByFirstName;
 
 @end

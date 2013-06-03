@@ -69,6 +69,10 @@
      ^(FBSession *session,
        FBSessionState state, NSError *error) {
          [self sessionStateChanged:session state:state error:error];
+         
+         if (error) {
+             NSLog(@"LoginError:%@",error.localizedDescription);
+         }
      }];
 }
 

@@ -58,4 +58,10 @@ static FMFriendManager *_sharedManager = nil;
     [_friends removeAllObjects];
 }
 
+
+-(void)sortByFirstName{
+    _friends = [[_friends sortedArrayUsingSelector:@selector(compareName:)]mutableCopy];
+    
+}
+
 @end

@@ -23,4 +23,12 @@
     
 }
 
+//ソート
+
+- (NSComparisonResult) compareName:(FMFriend*)friend{
+    
+    return [_first_name localizedCaseInsensitiveCompare:friend.first_name];
+    
+}
+
 @end

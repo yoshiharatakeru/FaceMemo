@@ -601,7 +601,9 @@ return height;
         [comment setComment:[res objectForKey:@"memo"]];
         NSString *disp_flg = ([[res objectForKey:@"disp_flg"]intValue] == 1)? @"true":@"false";
         [comment setDisp_flg:disp_flg];
-        [comment setDate:[res objectForKey:@"created_at"]];
+        
+        NSString *date = (res[@"date"] == [NSNull null])? @"":res[@"date"];
+        [comment setDate:date];
       
         
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -167,6 +167,9 @@ IIViewDeckControllerDelegate
 }
 
 
+- (void)endFocus:(UIButton*)bt{
+    [self.view endEditing:YES];
+}
 
 - (void)cellTapped:(FMButton*)bt{
     
@@ -207,6 +210,7 @@ IIViewDeckControllerDelegate
             //managerに追加
             FMFriend *friend = [[FMFriend alloc]initWithName:[dic objectForKey:@"name"] first_name:[dic objectForKey:@"first_name"] identifier:[dic objectForKey:@"id"] last_name:[dic objectForKey:@"last_name"] username:[dic objectForKey:@"username"]];
             [_friendManager addFriend:friend];
+            [_friendManager sortByFirstName];
             
             //テーブルビュー更新
             NSLog(@"FriendsViewCon:data.count:%d",data.count);
@@ -366,6 +370,17 @@ IIViewDeckControllerDelegate
     [self dismissViewControllerAnimated:YES completion:nil];
     //ユーザー情報をデータベースに登録
     
+    
+    //ログインが成功している場合は情報を取得
+    if (FBSession.activeSession.isOpen) {
+        //プロフィール情報の取得
+        [self populateUserDetails];
+        
+        //フレンド情報の取得
+        [self populateFriendsData];
+        
+    }
+    
 }
 
 
@@ -414,6 +429,14 @@ IIViewDeckControllerDelegate
     
     }];
     
+    //ボタン
+    UIButton *endFocusBt = [UIButton buttonWithType:UIButtonTypeCustom];
+    endFocusBt.frame = _blackView.frame;
+    [self.view addSubview:endFocusBt];
+    [endFocusBt addTarget:self action:@selector(endFocus:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tableView setUserInteractionEnabled:NO];
+    
 
 }
 
@@ -425,6 +448,9 @@ IIViewDeckControllerDelegate
         _blackView.alpha  = 0;
         _tabbar.alpha  = 1;
     }];
+    
+    [_tableView setUserInteractionEnabled:YES];
+    [[self.view.subviews objectAtIndex:self.view.subviews.count-1]removeFromSuperview];
     
     //トラッキング
     GAI_TRACK_EVENT(NSStringFromClass(self.class), NSStringFromSelector(_cmd), textField.text);

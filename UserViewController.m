@@ -18,6 +18,7 @@
 
 {
     
+    __weak IBOutlet UIImageView *_message;
     __weak IBOutlet FBProfilePictureView *profileView;
     __weak IBOutlet UILabel *lb_name;
 }
@@ -193,6 +194,14 @@
     
     NSLog(@"res:%@",responseData.description);
     
+    
+    if (responseData.count == 0) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_HUD hide:YES];
+        });
+    }
+    
     //コメントモデル追加
     for (NSDictionary *res in responseData) {
         FMComment *comment = FMComment.new;
@@ -205,6 +214,9 @@
         [comment setDisp_flg:disp_flg];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            //説明表示
+            _message.alpha = (_commentManager.comments.count == 0)? 1:0;
             
             [_HUD hide:YES];
             

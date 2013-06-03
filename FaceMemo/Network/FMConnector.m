@@ -106,6 +106,15 @@ static FMConnector *_sharedInstance = nil;
             
        
         }else{//新規作成
+            //日付を挿入
+            NSDate *nowdate = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+            NSString *datamoji = [formatter stringFromDate:nowdate];
+            [comment setDate:datamoji];
+
+            
+            
             op = [[FMCommentNetworkOperation alloc]initWithComment:comment action:@"create"];
             op.delegate = self;
             
