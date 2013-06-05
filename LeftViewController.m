@@ -158,10 +158,11 @@ UIAlertViewDelegate
             break;
         }
             
-        
+            
         case 3:{//logout
             NSString *message  = @"Are you sure you want to Logout ?";
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Logout", nil];
+            
             [al show];
             
             break;
