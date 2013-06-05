@@ -15,6 +15,7 @@
 #import "DetailViewController.h"
 #import "FMControllerManager.h"
 #import "MyTextField.h"
+#import "FMUserNetworkOperation.h"
 
 @interface FriendsViewController ()
 
@@ -98,6 +99,10 @@ IIViewDeckControllerDelegate
         [self populateFriendsData];
         
     }
+    
+    //viewdeckcon
+    self.viewDeckController.openSlideAnimationDuration = 0.15;
+    self.viewDeckController.closeSlideAnimationDuration = 0.3;
 
 }
 
@@ -213,8 +218,6 @@ IIViewDeckControllerDelegate
             [_friendManager sortByFirstName];
             
             //テーブルビュー更新
-            NSLog(@"FriendsViewCon:data.count:%d",data.count);
-            NSLog(@"FriendsViewCon:friends.count:%d",_friendManager.friends.count);
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[data indexOfObject:dic] inSection:0];
             [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
         }
@@ -336,7 +339,6 @@ IIViewDeckControllerDelegate
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"スクロール");
     [self.view endEditing:YES];
 }
 
@@ -366,11 +368,8 @@ IIViewDeckControllerDelegate
 #pragma mark loginViewControllerDelegate
 
 -(void)loginViewControllerDidLogin:(id)sender{
-    NSLog(@"takeru");
     [self dismissViewControllerAnimated:YES completion:nil];
-    //ユーザー情報をデータベースに登録
-    
-    
+     
     //ログインが成功している場合は情報を取得
     if (FBSession.activeSession.isOpen) {
         //プロフィール情報の取得
@@ -381,6 +380,15 @@ IIViewDeckControllerDelegate
         
     }
     
+    NSLog(@"test:id_facebook:%@",_user.id_facebook);
+    NSLog(@"test:name:%@",_user.name);
+    //ユーザー情報をデータベースに登録
+    _queue = [[NSOperationQueue alloc]init];
+    
+    FMUserNetworkOperation *op = [[FMUserNetworkOperation alloc]initWithUser:_user];
+    
+    [_queue addOperation:op];
+
 }
 
 

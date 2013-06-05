@@ -1017,6 +1017,7 @@ THE SOFTWARE.</string>
                             <constraint firstItem="0hO-8t-qn1" firstAttribute="trailing" secondItem="qNp-7N-nld" secondAttribute="trailing" type="default" id="esA-iQ-H4E"/>
                             <constraint firstItem="0hO-8t-qn1" firstAttribute="leading" secondItem="qNp-7N-nld" secondAttribute="leading" type="default" id="gxO-tD-AdB"/>
                             <constraint firstItem="RKm-We-FeQ" firstAttribute="trailing" secondItem="qNp-7N-nld" secondAttribute="trailing" type="default" id="hxR-2c-SUP"/>
+                            <constraint firstItem="0hO-8t-qn1" firstAttribute="bottom" secondItem="qNp-7N-nld" secondAttribute="bottom" type="user" id="peH-9B-3RI"/>
                             <constraint firstItem="Tw0-hw-28k" firstAttribute="top" secondItem="qNp-7N-nld" secondAttribute="top" type="default" id="u1N-8P-olC"/>
                             <constraint firstItem="KIx-jZ-DOj" firstAttribute="top" secondItem="qNp-7N-nld" secondAttribute="top" type="default" id="uv7-da-euM"/>
                             <constraint firstItem="Tw0-hw-28k" firstAttribute="bottom" secondItem="qNp-7N-nld" secondAttribute="bottom" type="default" id="vpg-te-U5C"/>
@@ -1213,6 +1214,7 @@ THE SOFTWARE.</string>
                             <constraint firstItem="ZBK-Qa-RKO" firstAttribute="top" secondItem="CK6-5o-d3J" secondAttribute="top" type="default" id="8r5-qV-Or1"/>
                             <constraint firstItem="1kC-hX-Lo6" firstAttribute="top" secondItem="CK6-5o-d3J" secondAttribute="top" type="user" id="A7d-Qy-UNt"/>
                             <constraint firstItem="8QR-YT-pQv" firstAttribute="top" secondItem="xTW-Yd-ggk" secondAttribute="top" constant="179" id="COf-L1-mfJ"/>
+                            <constraint firstItem="1kC-hX-Lo6" firstAttribute="bottom" secondItem="xTW-Yd-ggk" secondAttribute="bottom" type="user" id="DYj-9Z-Wzw"/>
                             <constraint firstItem="1kC-hX-Lo6" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="FIk-kZ-zMj"/>
                             <constraint firstItem="8QR-YT-pQv" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="IYx-0a-t1J"/>
                             <constraint firstItem="nvf-Mw-RUW" firstAttribute="leading" secondItem="xTW-Yd-ggk" secondAttribute="leading" type="default" id="Jko-kS-qQR"/>
@@ -1270,7 +1272,7 @@ THE SOFTWARE.</string>
         <image name="icon_user@2x.png" width="89" height="89"/>
         <image name="login_bt@2x.png" width="551" height="107"/>
         <image name="menu@2x.png" width="99" height="89"/>
-        <image name="nomemos@2x.png" width="640" height="236"/>
+        <image name="nomemos@2x.png" width="641" height="236"/>
         <image name="off_image@2x.png" width="165" height="65"/>
         <image name="profile@2x.png" width="640" height="245"/>
         <image name="received@2x.png" width="641" height="307"/>
@@ -1352,6 +1354,7 @@ THE SOFTWARE.</string>
         <class className="UserViewController" superclassName="GAITrackedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backBtPressed:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

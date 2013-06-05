@@ -62,6 +62,7 @@
 		0596ABF117477CC10020144B /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF017477CC10020144B /* LeftViewController.m */; };
 		0596ABF41747848E0020144B /* FMControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF31747848D0020144B /* FMControllerManager.m */; };
 		0596ABF7174794340020144B /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0596ABF6174794340020144B /* UserViewController.m */; };
+		05971596175CB52B002BB343 /* FMUserNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05971595175CB52B002BB343 /* FMUserNetworkOperation.m */; };
 		059B4DE01758B46B002B7972 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DDE1758B46B002B7972 /* back@2x.png */; };
 		059B4DE41758B97A002B7972 /* received_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DE21758B97A002B7972 /* received_top@2x.png */; };
 		059B4DE51758B97A002B7972 /* received@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059B4DE31758B97A002B7972 /* received@2x.png */; };
@@ -210,6 +211,8 @@
 		0596ABF31747848D0020144B /* FMControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMControllerManager.m; path = ../../FMControllerManager.m; sourceTree = "<group>"; };
 		0596ABF5174794340020144B /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = ../../UserViewController.h; sourceTree = "<group>"; };
 		0596ABF6174794340020144B /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = ../../UserViewController.m; sourceTree = "<group>"; };
+		05971594175CB52B002BB343 /* FMUserNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMUserNetworkOperation.h; path = ../Controller/FMUserNetworkOperation.h; sourceTree = "<group>"; };
+		05971595175CB52B002BB343 /* FMUserNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMUserNetworkOperation.m; path = ../Controller/FMUserNetworkOperation.m; sourceTree = "<group>"; };
 		059B4DDE1758B46B002B7972 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		059B4DE21758B97A002B7972 /* received_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "received_top@2x.png"; sourceTree = "<group>"; };
 		059B4DE31758B97A002B7972 /* received@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "received@2x.png"; sourceTree = "<group>"; };
@@ -421,6 +424,8 @@
 		056E432317411E0000534D8B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				05971594175CB52B002BB343 /* FMUserNetworkOperation.h */,
+				05971595175CB52B002BB343 /* FMUserNetworkOperation.m */,
 				052A3DB21754C0B50064B176 /* FMFeedbackNetworkOperation.h */,
 				052A3DB31754C0B50064B176 /* FMFeedbackNetworkOperation.m */,
 				055CFAD3174257F600145C10 /* FMCommentNetworkOperation.h */,
@@ -562,15 +567,10 @@
 				059B4E16175ADEBD002B7972 /* Icon@2x.png */,
 				059B4E14175ADEB5002B7972 /* Icon.png */,
 				059B4E031759B05F002B7972 /* CrittercismSDK */,
-				059B4DFF17599E15002B7972 /* CFNetwork.framework */,
-				059B4DFB17599CAD002B7972 /* MessageUI.framework */,
 				059B4DF817599C70002B7972 /* libsqlite3.0.dylib */,
 				059B4DEC1758D50C002B7972 /* GoogleAnalytics */,
-				059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */,
-				059B4DE81758D4D6002B7972 /* CoreData.framework */,
 				05CF527F174A64270006B9CC /* images */,
 				05CF527B174A49CC0006B9CC /* MBProgressHUD */,
-				05AA7CF7174A25330034B054 /* SenTestingKit.framework */,
 				05D47156172C2D8800556FDC /* FaceMemo */,
 				05AA7CEA174A25100034B054 /* FaceMemoUnitTests */,
 				05D4714F172C2D8800556FDC /* Frameworks */,
@@ -590,6 +590,11 @@
 		05D4714F172C2D8800556FDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				059B4DFF17599E15002B7972 /* CFNetwork.framework */,
+				059B4DFB17599CAD002B7972 /* MessageUI.framework */,
+				059B4DEA1758D4DC002B7972 /* SystemConfiguration.framework */,
+				059B4DE81758D4D6002B7972 /* CoreData.framework */,
+				05AA7CF7174A25330034B054 /* SenTestingKit.framework */,
 				05FB4BDE172CFDD9006AEF79 /* libsqlite3.dylib */,
 				05FB4BDA172CFD91006AEF79 /* AdSupport.framework */,
 				05FB4BDB172CFD91006AEF79 /* Security.framework */,
@@ -823,6 +828,7 @@
 				052A3DAE1754A25C0064B176 /* FeedbackViewController.m in Sources */,
 				052A3DB11754BE500064B176 /* FMFeedback.m in Sources */,
 				052A3DB41754C0B50064B176 /* FMFeedbackNetworkOperation.m in Sources */,
+				05971596175CB52B002BB343 /* FMUserNetworkOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

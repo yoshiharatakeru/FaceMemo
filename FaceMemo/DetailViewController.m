@@ -94,6 +94,7 @@
 
 
 - (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"DetailViewController:viewWillDisAppear");
     
     //通知解除
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -101,6 +102,7 @@
     [nc removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     
     [_commentManager initProperties];
+    [_tableView reloadData];
     
 }
 
@@ -319,7 +321,7 @@ return height;
     NSLog(@"合計文字:%d",[textView.text length] + [text length] - range.length);
     int sum = [textView.text length] + [text length] - range.length;
     if (sum == 99) {
-        [AppDelegate showAlertWithTitle:nil message:@"メモは100文字までです"];
+        [AppDelegate showAlertWithTitle:nil message:@"You can't put more than 100 charactors"];
         return NO;
     }
     
@@ -579,8 +581,8 @@ return height;
 - (void)connectorDidFailLoadingWithError:(id)sener{
     
     [_HUD hide:YES];
-    NSString *title = @"通信エラー";
-    NSString *message = @"通信に失敗しました";
+    NSString *title = @"Network Error";
+    NSString *message = @"Failed connecting to network.";
     [AppDelegate showAlertWithTitle:title message:message];
     
     
@@ -633,7 +635,7 @@ return height;
 - (void)connectorDidFinishUpdating:(id)sender{
     _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     _HUD.mode = MBProgressHUDModeCustomView;
-    _HUD.labelText = @"送信完了";
+    _HUD.labelText = @"OK";
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [_HUD hide:YES afterDelay:2];
