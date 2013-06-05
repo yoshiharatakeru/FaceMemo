@@ -35,6 +35,19 @@
     _user = [FMUser sharedInstance];
     
     
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [_commentManager initProperties];
+    FMControllerManager *manager = [FMControllerManager sharedManager];
+    [manager setUserViewController:self];
+    [_tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
     //コメント情報取得
     [_commentManager setFrom_user:@"blank"];
     [_commentManager setTo_user:_user.id_facebook];
@@ -50,19 +63,7 @@
     //トラッキング
     self.trackedViewName = @"UserView";
     
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated{
     
-    [_commentManager initProperties];
-    FMControllerManager *manager = [FMControllerManager sharedManager];
-    [manager setUserViewController:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [_commentManager initProperties];
     
     FMControllerManager *controllManager = [FMControllerManager sharedManager];
     [controllManager setUserViewController:self];
@@ -194,6 +195,8 @@
     
     NSLog(@"res:%@",responseData.description);
     
+    //説明表示
+    _message.alpha = (responseData.count == 0)? 1:0;
     
     if (responseData.count == 0) {
         
@@ -215,8 +218,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            //説明表示
-            _message.alpha = (_commentManager.comments.count == 0)? 1:0;
+
             
             [_HUD hide:YES];
             
@@ -238,8 +240,8 @@
 - (void)connectorDidFailLoadingWithError:(id)sener{
     
     [_HUD hide:YES];
-    NSString *title = @"通信エラー";
-    NSString *message = @"通信に失敗しました";
+    NSString *title = @"Network Error";
+    NSString *message = @"Failed connecting to network.";
     [AppDelegate showAlertWithTitle:title message:message];
 }
 

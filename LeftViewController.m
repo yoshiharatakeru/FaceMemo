@@ -160,7 +160,7 @@ UIAlertViewDelegate
             
         
         case 3:{//logout
-            NSString *message  = @"ログアウトしてもよろしいですか";
+            NSString *message  = @"Are you sure you want to log out ?";
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"ログアウト", nil];
             [al show];
             

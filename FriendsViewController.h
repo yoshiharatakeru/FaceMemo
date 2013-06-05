@@ -16,4 +16,5 @@
 @property(nonatomic,strong) FMUser *user;
 @property(nonatomic,strong) FMFriendManager *friendManager;
 @property (weak, nonatomic) IBOutlet UIButton *menu_bt;
+@property(nonatomic,strong) NSOperationQueue *queue;
 @end

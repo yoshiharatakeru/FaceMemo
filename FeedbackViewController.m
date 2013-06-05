@@ -116,7 +116,7 @@
  
     _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     _HUD.mode = MBProgressHUDModeCustomView;
-    _HUD.labelText = @"送信完了";
+    _HUD.labelText = @"OK";
     dispatch_async(dispatch_get_main_queue(), ^{
         [_HUD hide:YES afterDelay:2];
         [self.viewDeckController closeRightView];
